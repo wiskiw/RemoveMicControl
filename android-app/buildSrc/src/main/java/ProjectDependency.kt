@@ -7,6 +7,13 @@ object ProjectDependency {
     val androidConstraintLayout = LibraryDependency("androidx.constraintlayout", "constraintlayout", "2.1.4")
     val androidLivedata = LibraryDependency("androidx.lifecycle", "lifecycle-livedata-ktx", "2.5.1")
     val androidViewModel = LibraryDependency("androidx.lifecycle", "lifecycle-viewmodel-ktx", "2.5.1")
+    val androidFragmentKtx = LibraryDependency("androidx.fragment", "fragment-ktx", "1.3.2")
+
+    val viewbindingpropertydelegate = LibraryDependency(
+        "com.github.kirich1409",
+        "viewbindingpropertydelegate-noreflection",
+        "1.5.6",
+    )
 
 
     val xxx = LibraryDependency("group", "module", "000")

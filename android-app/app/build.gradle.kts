@@ -23,6 +23,11 @@ android {
             )
         }
     }
+
+    buildFeatures {
+        viewBinding = true
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -42,4 +47,7 @@ dependencies {
     implementation(ProjectDependency.androidConstraintLayout.notation)
     implementation(ProjectDependency.androidLivedata.notation)
     implementation(ProjectDependency.androidViewModel.notation)
+    implementation(ProjectDependency.androidFragmentKtx.notation)
+
+    implementation(ProjectDependency.viewbindingpropertydelegate.notation)
 }

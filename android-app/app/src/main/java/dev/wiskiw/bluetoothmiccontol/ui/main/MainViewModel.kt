@@ -3,5 +3,8 @@ package dev.wiskiw.bluetoothmiccontol.ui.main
 import androidx.lifecycle.ViewModel
 
 class MainViewModel : ViewModel() {
-    // TODO: Implement the ViewModel
+
+    fun onMicSwitched(isEnabled: Boolean) {
+
+    }
 }
