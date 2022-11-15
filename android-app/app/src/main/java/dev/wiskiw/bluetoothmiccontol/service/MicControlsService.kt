@@ -13,7 +13,7 @@ import androidx.annotation.RawRes
 import androidx.core.app.NotificationCompat
 import dev.wiskiw.bluetoothmiccontol.App
 import dev.wiskiw.bluetoothmiccontol.R
-import dev.wiskiw.bluetoothmiccontol.data.model.ControlAction
+import dev.wiskiw.bluetoothmiccontol.data.model.ChangeVolumeDirection
 import dev.wiskiw.bluetoothmiccontol.data.repository.MicControlRepository
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
@@ -64,9 +64,9 @@ class MicControlsService : Service() {
         micOnMediaPlayer = createNotificationMediaPlayer(R.raw.sound_mic_on)
         micOffMediaPlayer = createNotificationMediaPlayer(R.raw.sound_mic_off)
 
-        micControlRepository.getMicOffFlow()
-            .onEach { isMicOff ->
-                val mediaPlayer = if (isMicOff) micOffMediaPlayer else micOnMediaPlayer
+        micControlRepository.getIsMicMutedFlowFlow()
+            .onEach { isMicMuted ->
+                val mediaPlayer = if (isMicMuted) micOffMediaPlayer else micOnMediaPlayer
                 mediaPlayer?.start()
             }
             .launchIn(serviceScope)
@@ -95,12 +95,12 @@ class MicControlsService : Service() {
 
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
-        val isControlEnabledFlow = micControlRepository.getVolumeMicControlEnabledFlow()
-        val isMicOffFlow = micControlRepository.getMicOffFlow()
-        combine(isControlEnabledFlow, isMicOffFlow) { isControlEnabled, isMicOff ->
+        val isControlEnabledFlow = micControlRepository.getIsVolumeMicControlEnabledFlow()
+        val isMicMutedFlow = micControlRepository.getIsMicMutedFlowFlow()
+        combine(isControlEnabledFlow, isMicMutedFlow) { isControlEnabled, isMicMuted ->
             val notification = getNotification(
                 isMicControlEnabled = isControlEnabled,
-                isMicMuted = isMicOff,
+                isMicMuted = isMicMuted,
             )
             notificationManager.notify(NOTIFICATION_ID, notification)
         }
@@ -163,8 +163,8 @@ class MicControlsService : Service() {
             streamType = STREAM_BLUETOOTH_SCO,
             onChanged = { old, new ->
                 val controlAction = when {
-                    old < new -> ControlAction.VOLUME_UP
-                    old > new -> ControlAction.VOLUME_DOWN
+                    old < new -> ChangeVolumeDirection.UP
+                    old > new -> ChangeVolumeDirection.DOWN
                     else -> null
                 }
 
@@ -186,7 +186,7 @@ class MicControlsService : Service() {
 
         unregisterReceiver(volumeChangedReceiver)
 
-        micControlRepository.muteMic(mute = false)
+        micControlRepository.setMicMuted(mute = false)
         micControlRepository.setMicVolumeControlEnabled(enabled = false)
 
         super.onDestroy()

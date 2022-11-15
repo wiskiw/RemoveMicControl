@@ -9,33 +9,30 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
 class MainViewModel(
-    private val micControlUseCase: MicControlRepository,
+    private val micControlRepository: MicControlRepository,
 ) : ViewModel() {
 
-    private val _isMicOffFlow = MutableStateFlow(false)
-    val isMicOffFlow = _isMicOffFlow.asStateFlow()
+    private val _isEnableMicCheckedFlow = MutableStateFlow(false)
+    val isEnableMicCheckedFlow = _isEnableMicCheckedFlow.asStateFlow()
 
     private val _isVolumeMicControlEnabledFlow = MutableStateFlow(false)
     val isVolumeMicControlEnabledFlow = _isVolumeMicControlEnabledFlow.asStateFlow()
 
     init {
-        micControlUseCase.getMicOffFlow()
-            .onEach { _isMicOffFlow.value = it }
+        micControlRepository.getIsMicMutedFlowFlow()
+            .onEach { isMuted -> _isEnableMicCheckedFlow.value = !isMuted }
             .launchIn(viewModelScope)
 
-        micControlUseCase.getVolumeMicControlEnabledFlow()
+        micControlRepository.getIsVolumeMicControlEnabledFlow()
             .onEach { _isVolumeMicControlEnabledFlow.value = it }
             .launchIn(viewModelScope)
     }
 
-    fun onMuteMicSwitched(isChecked: Boolean) {
-        micControlUseCase.muteMic(mute = isChecked)
+    fun onEnableMicSwitched(isChecked: Boolean) {
+        micControlRepository.setMicMuted(mute = !isChecked)
     }
 
     fun onEnableVolumeControlSwitched(isChecked: Boolean) {
-        micControlUseCase.setMicVolumeControlEnabled(enabled = isChecked)
-        if (!isChecked) {
-            micControlUseCase.muteMic(mute = false)
-        }
+        micControlRepository.setMicVolumeControlEnabled(enabled = isChecked)
     }
 }

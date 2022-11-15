@@ -28,9 +28,9 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
         observeViewModel()
 
-        viewBinding.muteMicSwitch.setOnCheckedChangeListener { compoundButton, isChecked ->
+        viewBinding.enableMicSwitch.setOnCheckedChangeListener { compoundButton, isChecked ->
             if (compoundButton.isPressed) {
-                viewModel.onMuteMicSwitched(isChecked)
+                viewModel.onEnableMicSwitched(isChecked)
             }
         }
 
@@ -42,8 +42,8 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     }
 
     private fun observeViewModel() {
-        viewModel.isMicOffFlow
-            .onEach { viewBinding.muteMicSwitch.isChecked = it }
+        viewModel.isEnableMicCheckedFlow
+            .onEach { viewBinding.enableMicSwitch.isChecked = it }
             .launchIn(viewLifecycleOwner.lifecycleScope)
 
         viewModel.isVolumeMicControlEnabledFlow

@@ -9,10 +9,10 @@
     tools:context=".ui.main.MainFragment">
 
     <com.google.android.material.switchmaterial.SwitchMaterial
-        android:id="@+id/muteMicSwitch"
+        android:id="@+id/enableMicSwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Mute Mic"
+        android:text="Enable Mic"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="HardcodedText" />
@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:text="Enable Volume Control"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/muteMicSwitch"
+        app:layout_constraintTop_toBottomOf="@+id/enableMicSwitch"
         tools:ignore="HardcodedText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
