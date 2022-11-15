@@ -1,33 +1,53 @@
 package dev.wiskiw.bluetoothmiccontol.data.repository
 
+import android.content.Context
 import android.media.AudioManager
 import android.util.Log
 import dev.wiskiw.bluetoothmiccontol.App
 import dev.wiskiw.bluetoothmiccontol.data.model.ControlAction
-import dev.wiskiw.bluetoothmiccontol.service.ControlActionHandler
+import dev.wiskiw.bluetoothmiccontol.service.MicControlsService
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 
-class MicControlUseCase(
+class MicControlRepository(
+    private val appContext: Context,
     private val audioManager: AudioManager,
-) : ControlActionHandler {
+) {
 
     companion object {
-        private const val LOG_TAG = "${App.LOG_TAG}.MicCtrl"
+        private const val LOG_TAG = "${App.LOG_TAG}.MicRep"
 
         private val MUTE_CONTROL_ACTION = ControlAction.VOLUME_DOWN
         private val UNMUTE_CONTROL_ACTION = ControlAction.VOLUME_UP
     }
 
+    private val repositoryJob = Job()
+    private val repositoryScope = CoroutineScope(Dispatchers.Main + repositoryJob)
+
     private val micOffFlow = MutableStateFlow(audioManager.isMicrophoneMute)
-    private val isVolumeMicControlEnabled = MutableStateFlow(true)
+    private val isMicVolumeControlEnabled = MutableStateFlow(true)
+
+    init {
+        isMicVolumeControlEnabled
+            .onEach { isEnabled ->
+                if (isEnabled) {
+                    startControlsService()
+                }
+            }
+            .launchIn(repositoryScope)
+    }
 
     fun getMicOffFlow(): Flow<Boolean> {
         return micOffFlow
     }
 
     fun getVolumeMicControlEnabledFlow(): Flow<Boolean> {
-        return isVolumeMicControlEnabled
+        return isMicVolumeControlEnabled
     }
 
     fun muteMic(mute: Boolean) {
@@ -36,20 +56,16 @@ class MicControlUseCase(
         audioManager.isMicrophoneMute = mute
     }
 
-    fun toggleMic() {
-        muteMic(!micOffFlow.value)
+    fun setMicVolumeControlEnabled(enabled: Boolean) {
+        isMicVolumeControlEnabled.value = enabled
     }
 
-    fun setVolumeMicControlEnabled(enabled: Boolean) {
-        isVolumeMicControlEnabled.value = enabled
+    fun toggleMicVolumeControlEnabled() {
+        setMicVolumeControlEnabled(!isMicVolumeControlEnabled.value)
     }
 
-    fun toggleMicVolumeControl() {
-        isVolumeMicControlEnabled.value = !isVolumeMicControlEnabled.value
-    }
-
-    override fun handleAction(action: ControlAction): Boolean {
-        if (isVolumeMicControlEnabled.value) {
+    fun handleVolumeChanges(action: ControlAction): Boolean {
+        if (isMicVolumeControlEnabled.value) {
             when (action) {
                 MUTE_CONTROL_ACTION -> {
                     muteMic(true)
@@ -65,5 +81,9 @@ class MicControlUseCase(
             }
         }
         return false
+    }
+
+    private fun startControlsService() {
+        MicControlsService.start(appContext)
     }
 }

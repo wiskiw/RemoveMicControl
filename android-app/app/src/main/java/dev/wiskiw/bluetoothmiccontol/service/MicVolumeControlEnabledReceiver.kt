@@ -4,19 +4,19 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import dev.wiskiw.bluetoothmiccontol.App
-import dev.wiskiw.bluetoothmiccontol.data.repository.MicControlUseCase
+import dev.wiskiw.bluetoothmiccontol.data.repository.MicControlRepository
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
-class MicVolumeControlToggleReceiver : BroadcastReceiver(), KoinComponent {
+class MicVolumeControlEnabledReceiver : BroadcastReceiver(), KoinComponent {
 
     companion object {
-        private const val LOG_TAG = "${App.LOG_TAG}.MicToggleRcvr"
+        private const val LOG_TAG = "${App.LOG_TAG}.MicVolCtrlRcvr"
     }
 
-    private val micControlUseCase: MicControlUseCase by inject()
+    private val micControlUseCase: MicControlRepository by inject()
 
     override fun onReceive(context: Context?, intent: Intent?) {
-        micControlUseCase.toggleMicVolumeControl()
+        micControlUseCase.toggleMicVolumeControlEnabled()
     }
 }

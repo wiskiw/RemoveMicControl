@@ -1,6 +1,6 @@
 plugins {
     id("com.android.application")
-    id("com.google.devtools.ksp").version("1.6.21-1.0.6")
+    id("com.google.devtools.ksp").version("1.7.21-1.0.8")
     kotlin("android")
 }
 
@@ -54,6 +54,4 @@ dependencies {
 
     implementation(ProjectDependency.koinAndroid.notation)
     implementation(ProjectDependency.koinAndroidNavigation.notation)
-//    implementation("androidx.media2:media2:1.0.0-alpha04")
-    implementation("androidx.media2:media2-session:1.2.1")
 }

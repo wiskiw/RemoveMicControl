@@ -2,14 +2,14 @@ package dev.wiskiw.bluetoothmiccontol.ui.main
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import dev.wiskiw.bluetoothmiccontol.data.repository.MicControlUseCase
+import dev.wiskiw.bluetoothmiccontol.data.repository.MicControlRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
 class MainViewModel(
-    private val micControlUseCase: MicControlUseCase,
+    private val micControlUseCase: MicControlRepository,
 ) : ViewModel() {
 
     private val _isMicOffFlow = MutableStateFlow(false)
@@ -33,7 +33,7 @@ class MainViewModel(
     }
 
     fun onEnableVolumeControlSwitched(isChecked: Boolean) {
-        micControlUseCase.setVolumeMicControlEnabled(enabled = isChecked)
+        micControlUseCase.setMicVolumeControlEnabled(enabled = isChecked)
         if (!isChecked) {
             micControlUseCase.muteMic(mute = false)
         }

@@ -28,7 +28,7 @@
         </activity>
 
         <service
-            android:name=".service.ControlsHandlerService"
+            android:name=".service.MicControlsService"
             android:exported="true"
             android:permission="android.permission.MODIFY_AUDIO_SETTINGS">
             <intent-filter>
@@ -36,8 +36,8 @@
             </intent-filter>
         </service>
 
-        <receiver android:name=".service.MicVolumeControlToggleReceiver" />
-        <receiver android:name=".service.DismissControlsNotificationReceiver" />
+        <receiver android:name=".service.MicVolumeControlEnabledReceiver" />
+        <receiver android:name=".service.DismissMicControlsNotificationReceiver" />
 
     </application>
 
