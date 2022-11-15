@@ -28,8 +28,9 @@
         </activity>
 
         <service
-            android:name=".service.MediaPlaybackService"
-            android:exported="true">
+            android:name=".service.ControlsHandlerService"
+            android:exported="true"
+            android:permission="android.permission.MODIFY_AUDIO_SETTINGS">
             <intent-filter>
                 <action android:name="android.media.browse.MediaBrowserService" />
             </intent-filter>

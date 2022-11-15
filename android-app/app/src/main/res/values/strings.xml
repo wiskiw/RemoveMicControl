@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Bluetooth Mic Contol</string>
 
-    <string name="mic_controls_notification_channel">Mic Controls</string>
+    <string name="mic_control_notification_channel">Mic Controls Notifications</string>
+    <string name="mic_control_notification_title">Mic Control</string>
+    <string name="mic_control_notification_message">…</string>
 </resources>
