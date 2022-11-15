@@ -4,4 +4,6 @@
     <string name="mic_control_notification_channel">Mic Controls Notifications</string>
     <string name="mic_control_notification_title">Mic Control</string>
     <string name="mic_control_notification_message">…</string>
+    <string name="mic_control_notification_action_enable_volume_control">Enable</string>
+    <string name="mic_control_notification_action_disable_volume_control">Disable</string>
 </resources>

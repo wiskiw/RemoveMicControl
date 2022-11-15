@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/layout/fragment_main.xml" value="0.5222222222222223" />
+        <entry key="app/src/main/res/layout/notification_mic_contol.xml" value="0.25" />
       </map>
     </option>
   </component>

@@ -1,20 +1,13 @@
 package dev.wiskiw.bluetoothmiccontol.data.model
 
-sealed interface ControlAction {
+enum class ControlAction {
+    VOLUME_UP,
+    VOLUME_DOWN,
 
-    data class VolumeChanged(
-        val old: Int,
-        val new: Int,
-    ) : ControlAction {
-        fun isChangedUp(): Boolean = old < new
-    }
-
-    enum class Media : ControlAction {
-        STOP,
-        PAUSE,
-        PLAY,
-        SKIP_TO_PREVIOUS,
-        SKIP_TO_NEXT,
-        PLAY_PAUSE,
-    }
+    STOP,
+    PAUSE,
+    PLAY,
+    SKIP_TO_PREVIOUS,
+    SKIP_TO_NEXT,
+    PLAY_PAUSE,
 }
