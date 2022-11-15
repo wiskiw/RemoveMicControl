@@ -15,13 +15,27 @@ class MainViewModel(
     private val _isMicOffFlow = MutableStateFlow(false)
     val isMicOffFlow = _isMicOffFlow.asStateFlow()
 
+    private val _isVolumeMicControlEnabledFlow = MutableStateFlow(false)
+    val isVolumeMicControlEnabledFlow = _isVolumeMicControlEnabledFlow.asStateFlow()
+
     init {
         micControlUseCase.getMicOffFlow()
             .onEach { _isMicOffFlow.value = it }
+            .launchIn(viewModelScope)
+
+        micControlUseCase.getVolumeMicControlEnabledFlow()
+            .onEach { _isVolumeMicControlEnabledFlow.value = it }
             .launchIn(viewModelScope)
     }
 
     fun onMuteMicSwitched(isChecked: Boolean) {
         micControlUseCase.muteMic(mute = isChecked)
+    }
+
+    fun onEnableVolumeControlSwitched(isChecked: Boolean) {
+        micControlUseCase.setVolumeMicControlEnabled(enabled = isChecked)
+        if (!isChecked) {
+            micControlUseCase.muteMic(mute = false)
+        }
     }
 }

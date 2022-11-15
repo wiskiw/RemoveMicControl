@@ -12,8 +12,7 @@ import dev.wiskiw.bluetoothmiccontol.App
 class VolumeChangedReceiver(
     private val audioManager: AudioManager,
     private val streamType: Int,
-    private val rollback: Boolean,
-    private val onChanged: (Int, Int) -> Unit,
+    private val onChanged: (Int, Int) -> Boolean,
 ) : BroadcastReceiver() {
 
     companion object {
@@ -28,27 +27,29 @@ class VolumeChangedReceiver(
     }
 
     override fun onReceive(context: Context, intent: Intent?) {
+        // todo fix edge cases
+
         if (ignoreNext) {
             ignoreNext = false
+            saveVolume(getVolume())
             return
         }
 
         val old = previousVolume
         val new = getVolume()
 
-        if (old != new) {
-            onValueChangedByUser(old, new)
+        val isRollbackRequired = onValueChangedByUser(old, new)
+        saveVolume(new)
 
-            if (rollback) {
-                ignoreNext = true
-                setVolume(old)
-            }
+        if (isRollbackRequired) {
+            ignoreNext = true
+            setVolume(old)
         }
     }
 
-    private fun onValueChangedByUser(old: Int, new: Int) {
-        Log.d(LOG_TAG, "new volume received: $new")
-        onChanged(old, new)
+    private fun onValueChangedByUser(old: Int, new: Int): Boolean {
+        Log.d(LOG_TAG, "volume change by user to $new")
+        return onChanged(old, new)
     }
 
     private fun saveVolume(level: Int) {

@@ -4,5 +4,5 @@ import dev.wiskiw.bluetoothmiccontol.data.model.ControlAction
 
 interface ControlActionHandler {
 
-    fun handleAction(action: ControlAction)
+    fun handleAction(action: ControlAction): Boolean
 }

@@ -7,7 +7,6 @@ import android.content.IntentFilter
 import android.graphics.Color
 import android.media.AudioManager
 import android.os.IBinder
-import android.support.v4.media.session.MediaSessionCompat
 import androidx.core.app.NotificationCompat
 import dev.wiskiw.bluetoothmiccontol.App
 import dev.wiskiw.bluetoothmiccontol.R
@@ -35,19 +34,19 @@ class ControlsHandlerService : Service() {
     private val serviceJob = Job()
     private val serviceScope = CoroutineScope(Dispatchers.Main + serviceJob)
 
-    private val mediaSession: MediaSessionCompat by inject()
     private val actionHandler: ControlActionHandler by inject<MicControlUseCase>()
     private val micControlUseCase: MicControlUseCase by inject<MicControlUseCase>()
 
     private val notificationManager: NotificationManager by lazy { getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager }
     private var notificationBuilder: NotificationCompat.Builder? = null
+    private var volumeChangedReceiver: VolumeChangedReceiver? = null
 
     override fun onCreate() {
         super.onCreate()
 
         createNotificationChannel(CHANNEL_ID_MIC_CONTROLS, getString(R.string.mic_control_notification_channel))
 
-        val micControlNotification = getNotification(CHANNEL_ID_MIC_CONTROLS)
+        val micControlNotification = getNotification(CHANNEL_ID_MIC_CONTROLS, isControlEnabled = false)
         startForeground(NOTIFICATION_ID, micControlNotification)
 
         observeVolumeChanges()
@@ -60,26 +59,34 @@ class ControlsHandlerService : Service() {
             .launchIn(serviceScope)
     }
 
-    private fun getNotification(channelId: String, isControlEnabled: Boolean? = null): Notification {
+    private fun getNotification(channelId: String, isControlEnabled: Boolean): Notification {
+        val contentText =
+            if (isControlEnabled) getString(R.string.mic_control_notification_message_enabled)
+            else getString(R.string.mic_control_notification_message_disabled)
+
         val builder = notificationBuilder ?: NotificationCompat.Builder(this, channelId)
             .setSmallIcon(R.mipmap.ic_launcher_round)
             .setContentTitle(getString(R.string.mic_control_notification_title))
+            .setContentText(contentText)
             .setPriority(NotificationCompat.PRIORITY_HIGH)
 
 
-        if (isControlEnabled != null) {
-            builder.clearActions()
+        builder.clearActions()
 
-            val buttonLabel =
-                if (isControlEnabled) getString(R.string.mic_control_notification_action_disable_volume_control)
-                else getString(R.string.mic_control_notification_action_enable_volume_control)
+        val buttonLabel =
+            if (isControlEnabled) getString(R.string.mic_control_notification_action_disable_volume_control)
+            else getString(R.string.mic_control_notification_action_enable_volume_control)
 
-            val intent = Intent(this, MicVolumeControlToggleReceiver::class.java)
-            val actionIntent =
-                PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_MUTABLE)
+        val toggleIntent = Intent(this, MicVolumeControlToggleReceiver::class.java)
+        val togglePendingIntent =
+            PendingIntent.getBroadcast(this, 0, toggleIntent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_MUTABLE)
 
-            builder.addAction(R.mipmap.ic_launcher_round, buttonLabel, actionIntent)
-        }
+        builder.addAction(R.mipmap.ic_launcher_round, buttonLabel, togglePendingIntent)
+
+        val dismissIntent = Intent(this, DismissControlsNotificationReceiver::class.java)
+        val dismissPendingIntent =
+            PendingIntent.getBroadcast(this.applicationContext, 0, dismissIntent, PendingIntent.FLAG_MUTABLE)
+        builder.setDeleteIntent(dismissPendingIntent)
 
         return builder.build()
     }
@@ -99,10 +106,9 @@ class ControlsHandlerService : Service() {
 
         val audioManager = getSystemService(Context.AUDIO_SERVICE) as AudioManager
 
-        val volumeChangedReceiver = VolumeChangedReceiver(
+        volumeChangedReceiver = VolumeChangedReceiver(
             audioManager = audioManager,
             streamType = STREAM_BLUETOOTH_SCO,
-            rollback = true,
             onChanged = { old, new ->
                 val controlAction = when {
                     old < new -> ControlAction.VOLUME_UP
@@ -110,14 +116,22 @@ class ControlsHandlerService : Service() {
                     else -> null
                 }
 
-                controlAction?.let { actionHandler.handleAction(it) }
+                if (controlAction != null) {
+                    val isActionHandled = actionHandler.handleAction(controlAction)
+                    return@VolumeChangedReceiver isActionHandled
+                }
+                return@VolumeChangedReceiver false
             }
         )
         registerReceiver(volumeChangedReceiver, intentFilter)
     }
 
     override fun onDestroy() {
-        mediaSession.isActive = false
+        unregisterReceiver(volumeChangedReceiver)
+
+        micControlUseCase.muteMic(mute = false)
+        micControlUseCase.setVolumeMicControlEnabled(enabled = false)
+
         super.onDestroy()
     }
 

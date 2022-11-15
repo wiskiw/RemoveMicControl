@@ -40,19 +40,30 @@ class MicControlUseCase(
         muteMic(!micOffFlow.value)
     }
 
+    fun setVolumeMicControlEnabled(enabled: Boolean) {
+        isVolumeMicControlEnabled.value = enabled
+    }
+
     fun toggleMicVolumeControl() {
         isVolumeMicControlEnabled.value = !isVolumeMicControlEnabled.value
     }
 
-    override fun handleAction(action: ControlAction) {
+    override fun handleAction(action: ControlAction): Boolean {
         if (isVolumeMicControlEnabled.value) {
             when (action) {
-                MUTE_CONTROL_ACTION -> muteMic(true)
-                UNMUTE_CONTROL_ACTION -> muteMic(false)
+                MUTE_CONTROL_ACTION -> {
+                    muteMic(true)
+                    return true
+                }
+                UNMUTE_CONTROL_ACTION -> {
+                    muteMic(false)
+                    return true
+                }
                 else -> {
                     // ignore
                 }
             }
         }
+        return false
     }
 }
