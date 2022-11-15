@@ -1,5 +1,6 @@
 plugins {
     id("com.android.application")
+    id("com.google.devtools.ksp").version("1.6.21-1.0.6")
     kotlin("android")
 }
 
@@ -50,4 +51,9 @@ dependencies {
     implementation(ProjectDependency.androidFragmentKtx.notation)
 
     implementation(ProjectDependency.viewbindingpropertydelegate.notation)
+
+    implementation(ProjectDependency.koinAndroid.notation)
+    implementation(ProjectDependency.koinAndroidNavigation.notation)
+//    implementation("androidx.media2:media2:1.0.0-alpha04")
+    implementation("androidx.media2:media2-session:1.2.1")
 }

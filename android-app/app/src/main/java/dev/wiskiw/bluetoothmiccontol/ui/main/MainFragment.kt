@@ -10,10 +10,13 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import dev.wiskiw.bluetoothmiccontol.R
 import dev.wiskiw.bluetoothmiccontol.databinding.FragmentMainBinding
 
+
 class MainFragment : Fragment(R.layout.fragment_main) {
 
     companion object {
         fun newInstance() = MainFragment()
+
+        private val LOG_TAG = "BMC"
     }
 
     private val viewModel: MainViewModel by viewModels()

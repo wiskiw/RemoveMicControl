@@ -4,7 +4,12 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import dev.wiskiw.bluetoothmiccontol.ui.main.MainFragment
 
+
 class MainActivity : AppCompatActivity() {
+
+    companion object {
+        private const val LOG_TAG = "${App.LOG_TAG}.MainAct"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

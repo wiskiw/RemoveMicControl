@@ -16,5 +16,9 @@ object ProjectDependency {
     )
 
 
+    private const val koinAndroidVersion = "3.3.0"
+    val koinAndroid = LibraryDependency("io.insert-koin", "koin-android", koinAndroidVersion)
+    val koinAndroidNavigation = LibraryDependency("io.insert-koin", "koin-androidx-navigation", koinAndroidVersion)
+
     val xxx = LibraryDependency("group", "module", "000")
 }
