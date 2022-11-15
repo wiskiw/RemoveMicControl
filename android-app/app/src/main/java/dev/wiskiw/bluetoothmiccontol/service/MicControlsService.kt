@@ -5,8 +5,11 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.graphics.Color
+import android.media.AudioAttributes
 import android.media.AudioManager
+import android.media.MediaPlayer
 import android.os.IBinder
+import androidx.annotation.RawRes
 import androidx.core.app.NotificationCompat
 import dev.wiskiw.bluetoothmiccontol.App
 import dev.wiskiw.bluetoothmiccontol.R
@@ -18,6 +21,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import org.koin.android.ext.android.inject
 
 
@@ -45,11 +49,39 @@ class MicControlsService : Service() {
     private var notificationBuilder: NotificationCompat.Builder? = null
     private var volumeChangedReceiver: VolumeChangedReceiver? = null
 
+    private var micOnMediaPlayer: MediaPlayer? = null
+    private var micOffMediaPlayer: MediaPlayer? = null
+
     override fun onCreate() {
         super.onCreate()
 
+        setupSounds()
         setupNotification()
         observeVolumeChanges()
+    }
+
+    private fun setupSounds() {
+        micOnMediaPlayer = createNotificationMediaPlayer(R.raw.sound_mic_on)
+        micOffMediaPlayer = createNotificationMediaPlayer(R.raw.sound_mic_off)
+
+        micControlRepository.getMicOffFlow()
+            .onEach { isMicOff ->
+                val mediaPlayer = if (isMicOff) micOffMediaPlayer else micOnMediaPlayer
+                mediaPlayer?.start()
+            }
+            .launchIn(serviceScope)
+    }
+
+    private fun createNotificationMediaPlayer(@RawRes resId: Int): MediaPlayer {
+        val mediaPlayer = MediaPlayer.create(this, resId)
+        val audioAttributes = AudioAttributes.Builder()
+            .setLegacyStreamType(AudioManager.STREAM_NOTIFICATION)
+            .setUsage(AudioAttributes.USAGE_NOTIFICATION_COMMUNICATION_INSTANT)
+            .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+            .build()
+
+        mediaPlayer.setAudioAttributes(audioAttributes)
+        return mediaPlayer
     }
 
     private fun setupNotification() {
@@ -148,6 +180,9 @@ class MicControlsService : Service() {
 
     override fun onDestroy() {
         serviceJob.cancel(CancellationException("Service has been stopped"))
+
+        micOnMediaPlayer?.release()
+        micOffMediaPlayer?.release()
 
         unregisterReceiver(volumeChangedReceiver)
 
