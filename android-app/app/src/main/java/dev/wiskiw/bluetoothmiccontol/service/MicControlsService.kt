@@ -43,6 +43,7 @@ class MicControlsService : Service() {
 
     private val micControlRepository: MicControlRepository by inject()
 
+    private val notificationManager: NotificationManager by lazy { getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager }
     private var controlsNotificationBuilder: NotificationCompat.Builder? = null
 
     private var volumeChangedReceiver: ScoVolumeChangedReceiver? = null
@@ -94,6 +95,10 @@ class MicControlsService : Service() {
             .setSmallIcon(R.drawable.ic_notification_service_running)
             .setContentTitle(getString(R.string.service_running_notification_title))
             .setContentText(getString(R.string.service_running_notification_message))
+            .setStyle(
+                NotificationCompat.BigTextStyle()
+                    .bigText(getString(R.string.service_running_notification_message))
+            )
             .setPriority(NotificationCompat.PRIORITY_LOW)
             .setOnlyAlertOnce(true)
             .build()
@@ -101,7 +106,6 @@ class MicControlsService : Service() {
 
     private fun observeUserInCommunication() {
         var inCommunicationObserveScope: CoroutineScope? = null
-        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
         micControlRepository.getIsUserInCommunicationFlow()
             .onEach { isUserInCommunication ->
@@ -201,6 +205,8 @@ class MicControlsService : Service() {
 
         micOnMediaPlayer?.release()
         micOffMediaPlayer?.release()
+
+        notificationManager.cancel(CONTROLS_NOTIFICATION_ID)
 
         super.onDestroy()
     }

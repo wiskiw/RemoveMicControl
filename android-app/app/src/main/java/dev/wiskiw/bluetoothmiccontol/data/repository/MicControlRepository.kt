@@ -100,7 +100,7 @@ class MicControlRepository(
                 isUserInCommunicationFlow.value = false
 
             else -> {
-                // do nothing
+                isUserInCommunicationFlow.value = audioManager.mode == AudioManager.MODE_IN_COMMUNICATION
             }
         }
     }

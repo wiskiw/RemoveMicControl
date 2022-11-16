@@ -1,16 +1,21 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
-    <style name="Theme.BluetoothMicContol" parent="Theme.MaterialComponents.DayNight">
+    <style name="Theme.BluetoothMicControl" parent="Theme.MaterialComponents.Light.NoActionBar">
+
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/grey_300</item>
-        <item name="colorPrimaryVariant">@color/grey_800</item>
+        <item name="colorPrimaryDark">@color/grey_300</item>
+        <item name="colorPrimaryVariant">@color/grey_300</item>
         <item name="colorOnPrimary">@color/black</item>
+
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/blue_grey_700</item>
         <item name="colorSecondaryVariant">@color/blue_grey_700</item>
         <item name="colorOnSecondary">@color/black</item>
+
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">#bcbcbc</item>
+        <item name="android:statusBarColor">@color/grey_300</item>
+
         <!-- Customize your theme here. -->
     </style>
 </resources>
