@@ -8,7 +8,7 @@ android {
     compileSdk = ProjectConfig.compileSdkVersion
 
     defaultConfig {
-        applicationId = "dev.wiskiw.bluetoothmiccontol"
+        applicationId = "dev.wiskiw.bluetoothmiccontrol"
         minSdk = ProjectConfig.minSdkVersion
         targetSdk = ProjectConfig.targetSdkVersion
         versionCode = ProjectConfig.versionCode

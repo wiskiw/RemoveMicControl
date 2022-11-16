@@ -1,11 +1,11 @@
-package dev.wiskiw.bluetoothmiccontol.service
+package dev.wiskiw.bluetoothmiccontrol.service
 
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
 import android.graphics.Color
-import dev.wiskiw.bluetoothmiccontol.R
+import dev.wiskiw.bluetoothmiccontrol.R
 
 class NotificationChannelService(
     private val context: Context,

@@ -1,10 +1,10 @@
-package dev.wiskiw.bluetoothmiccontol.di
+package dev.wiskiw.bluetoothmiccontrol.di
 
 import android.content.Context
 import android.media.AudioManager
-import dev.wiskiw.bluetoothmiccontol.data.repository.MicControlRepository
-import dev.wiskiw.bluetoothmiccontol.service.NotificationChannelService
-import dev.wiskiw.bluetoothmiccontol.ui.main.MainViewModel
+import dev.wiskiw.bluetoothmiccontrol.data.repository.MicControlRepository
+import dev.wiskiw.bluetoothmiccontrol.service.NotificationChannelService
+import dev.wiskiw.bluetoothmiccontrol.ui.main.MainViewModel
 import org.koin.android.ext.koin.androidApplication
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel

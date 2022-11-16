@@ -1,12 +1,12 @@
-package dev.wiskiw.bluetoothmiccontol.ui.main
+package dev.wiskiw.bluetoothmiccontrol.ui.main
 
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
-import dev.wiskiw.bluetoothmiccontol.R
-import dev.wiskiw.bluetoothmiccontol.databinding.FragmentMainBinding
+import dev.wiskiw.bluetoothmiccontrol.R
+import dev.wiskiw.bluetoothmiccontrol.databinding.FragmentMainBinding
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import org.koin.androidx.viewmodel.ext.android.viewModel

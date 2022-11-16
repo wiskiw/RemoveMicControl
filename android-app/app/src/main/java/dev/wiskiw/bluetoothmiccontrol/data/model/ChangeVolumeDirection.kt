@@ -1,4 +1,4 @@
-package dev.wiskiw.bluetoothmiccontol.data.model
+package dev.wiskiw.bluetoothmiccontrol.data.model
 
 enum class ChangeVolumeDirection {
     UP,

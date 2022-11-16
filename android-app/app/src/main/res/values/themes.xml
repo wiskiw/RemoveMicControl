@@ -1,6 +1,7 @@
 <resources>
     <!-- Base application theme. -->
     <style name="Theme.BluetoothMicControl" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:windowLightStatusBar">true</item>
 
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/grey_300</item>

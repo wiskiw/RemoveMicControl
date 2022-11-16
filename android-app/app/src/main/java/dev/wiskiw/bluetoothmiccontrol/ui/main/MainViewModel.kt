@@ -1,8 +1,8 @@
-package dev.wiskiw.bluetoothmiccontol.ui.main
+package dev.wiskiw.bluetoothmiccontrol.ui.main
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import dev.wiskiw.bluetoothmiccontol.data.repository.MicControlRepository
+import dev.wiskiw.bluetoothmiccontrol.data.repository.MicControlRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn

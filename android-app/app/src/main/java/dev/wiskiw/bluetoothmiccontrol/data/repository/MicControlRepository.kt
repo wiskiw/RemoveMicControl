@@ -1,11 +1,11 @@
-package dev.wiskiw.bluetoothmiccontol.data.repository
+package dev.wiskiw.bluetoothmiccontrol.data.repository
 
 import android.content.Context
 import android.media.AudioManager
 import android.util.Log
-import dev.wiskiw.bluetoothmiccontol.App
-import dev.wiskiw.bluetoothmiccontol.data.model.ChangeVolumeDirection
-import dev.wiskiw.bluetoothmiccontol.service.MicControlsService
+import dev.wiskiw.bluetoothmiccontrol.App
+import dev.wiskiw.bluetoothmiccontrol.data.model.ChangeVolumeDirection
+import dev.wiskiw.bluetoothmiccontrol.service.MicControlsService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job

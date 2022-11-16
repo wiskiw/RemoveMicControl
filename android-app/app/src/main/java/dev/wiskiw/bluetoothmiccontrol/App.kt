@@ -1,9 +1,9 @@
-package dev.wiskiw.bluetoothmiccontol
+package dev.wiskiw.bluetoothmiccontrol
 
 import android.app.Application
-import dev.wiskiw.bluetoothmiccontol.di.appModule
-import dev.wiskiw.bluetoothmiccontol.di.viewModel
-import dev.wiskiw.bluetoothmiccontol.service.NotificationChannelService
+import dev.wiskiw.bluetoothmiccontrol.di.appModule
+import dev.wiskiw.bluetoothmiccontrol.di.viewModel
+import dev.wiskiw.bluetoothmiccontrol.service.NotificationChannelService
 import org.koin.android.ext.android.inject
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger

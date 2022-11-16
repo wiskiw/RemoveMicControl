@@ -1,10 +1,9 @@
-package dev.wiskiw.bluetoothmiccontol
+package dev.wiskiw.bluetoothmiccontrol
 
 import android.os.Bundle
 import android.view.KeyEvent
 import androidx.appcompat.app.AppCompatActivity
-import dev.wiskiw.bluetoothmiccontol.di.viewModel
-import dev.wiskiw.bluetoothmiccontol.ui.main.MainFragment
+import dev.wiskiw.bluetoothmiccontrol.ui.main.MainFragment
 
 
 class MainActivity : AppCompatActivity() {

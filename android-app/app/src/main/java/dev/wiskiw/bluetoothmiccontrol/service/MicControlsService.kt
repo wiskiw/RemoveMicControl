@@ -1,4 +1,4 @@
-package dev.wiskiw.bluetoothmiccontol.service
+package dev.wiskiw.bluetoothmiccontrol.service
 
 import android.app.Notification
 import android.app.NotificationManager
@@ -13,10 +13,10 @@ import android.media.MediaPlayer
 import android.os.IBinder
 import androidx.annotation.RawRes
 import androidx.core.app.NotificationCompat
-import dev.wiskiw.bluetoothmiccontol.App
-import dev.wiskiw.bluetoothmiccontol.MainActivity
-import dev.wiskiw.bluetoothmiccontol.R
-import dev.wiskiw.bluetoothmiccontol.data.repository.MicControlRepository
+import dev.wiskiw.bluetoothmiccontrol.R
+import dev.wiskiw.bluetoothmiccontrol.App
+import dev.wiskiw.bluetoothmiccontrol.MainActivity
+import dev.wiskiw.bluetoothmiccontrol.data.repository.MicControlRepository
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.drop

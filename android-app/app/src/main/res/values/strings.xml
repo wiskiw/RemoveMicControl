@@ -5,8 +5,8 @@
         1. Connect your bluetooth headphones\n2. Join a call or meeting using bluetooth headphones\n3. Microphone notification should appears automatically
     </string>
 
-    <string name="service_notification_channel">Service Notification</string>
-    <string name="mic_control_notification_channel">Mic Controls Notification</string>
+    <string name="service_notification_channel">Service Notifications</string>
+    <string name="mic_control_notification_channel">Mic Controls Notifications</string>
 
     <string name="service_running_notification_title">Service is running</string>
     <string name="service_running_notification_message">Service is running in background and waiting for calls. You can disable this notification in system settings</string>
