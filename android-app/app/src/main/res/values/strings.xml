@@ -2,9 +2,15 @@
     <string name="app_name">Bluetooth Mic Control</string>
 
     <string name="mic_control_notification_channel">Mic Controls Notifications</string>
-    <string name="mic_control_notification_title">Mic Control</string>
-    <string name="mic_control_notification_message_enabled">Mic volume control ENABLED</string>
-    <string name="mic_control_notification_message_disabled">Mic volume control DISABLED</string>
-    <string name="mic_control_notification_action_enable_volume_control">Pause</string>
+    <string name="mic_control_notification_title">Microphone is %1$s</string>
+    <string name="mic_control_notification_message">Volume controls are %1$s</string>
+
+    <string name="mic_volume_control_state_disabled">DISABLED</string>
+    <string name="mic_volume_control_state_enabled">ENABLED</string>
+
+    <string name="mic_state_muted">MUTED</string>
+    <string name="mic_state_unmuted">ACTIVE</string>
+
+    <string name="mic_control_notification_action_enable_volume_control">Enable</string>
     <string name="mic_control_notification_action_disable_volume_control">Disable</string>
 </resources>

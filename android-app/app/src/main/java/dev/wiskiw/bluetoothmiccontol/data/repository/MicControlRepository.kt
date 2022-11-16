@@ -34,10 +34,9 @@ class MicControlRepository(
     init {
         isMicVolumeControlEnabled
             .onEach { isEnabled ->
+                lastChangeVolumeDirection = null
                 if (isEnabled) {
                     startControlsService()
-                } else {
-                    lastChangeVolumeDirection = null
                 }
             }
             .launchIn(repositoryScope)
@@ -66,14 +65,15 @@ class MicControlRepository(
     }
 
     fun handleVolumeChanges(direction: ChangeVolumeDirection): Boolean {
-        if (isMicVolumeControlEnabled.value && (lastChangeVolumeDirection != null && direction != lastChangeVolumeDirection)) {
-            when (direction) {
-                ChangeVolumeDirection.UP -> setMicMuted(false)
-                ChangeVolumeDirection.DOWN -> setMicMuted(true)
+        if (isMicVolumeControlEnabled.value) {
+            if (lastChangeVolumeDirection == null || direction != lastChangeVolumeDirection) {
+                when (direction) {
+                    ChangeVolumeDirection.UP -> setMicMuted(false)
+                    ChangeVolumeDirection.DOWN -> setMicMuted(true)
+                }
+                lastChangeVolumeDirection = direction
+                return true
             }
-
-            lastChangeVolumeDirection = direction
-            return true
         }
         lastChangeVolumeDirection = direction
         return false

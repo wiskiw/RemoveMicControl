@@ -111,17 +111,21 @@ class MicControlsService : Service() {
     private fun getNotification(isMicControlEnabled: Boolean, isMicMuted: Boolean): Notification {
         val builder = notificationBuilder ?: NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID)
 
-        val contentText =
-            if (isMicControlEnabled) getString(R.string.mic_control_notification_message_enabled)
-            else getString(R.string.mic_control_notification_message_disabled)
+        val micControlStateText =
+            if (isMicControlEnabled) getString(R.string.mic_volume_control_state_enabled)
+            else getString(R.string.mic_volume_control_state_disabled)
+        val contentText = getString(R.string.mic_control_notification_message, micControlStateText)
         builder.setContentText(contentText)
 
         val smallIconRes = if (isMicMuted) R.drawable.ic_mic_off else R.drawable.ic_mic_on
         builder.setSmallIcon(smallIconRes)
-
-        builder.setContentTitle(getString(R.string.mic_control_notification_title))
         builder.priority = NotificationCompat.PRIORITY_HIGH
 
+        val micStateText =
+            if (isMicMuted) getString(R.string.mic_state_muted)
+            else getString(R.string.mic_state_unmuted)
+        val titleText = getString(R.string.mic_control_notification_title, micStateText)
+        builder.setContentTitle(titleText)
 
         builder.clearActions()
 
@@ -146,7 +150,7 @@ class MicControlsService : Service() {
     private fun createNotificationChannel(channelName: String) {
         val channel = NotificationChannel(NOTIFICATION_CHANNEL_ID, channelName, NotificationManager.IMPORTANCE_HIGH)
         channel.lightColor = Color.RED
-        channel.lockscreenVisibility = Notification.VISIBILITY_SECRET
+        channel.lockscreenVisibility = Notification.VISIBILITY_PUBLIC
 
         val service = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         service.createNotificationChannel(channel)
