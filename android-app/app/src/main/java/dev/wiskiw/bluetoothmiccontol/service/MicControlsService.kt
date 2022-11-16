@@ -1,10 +1,12 @@
 package dev.wiskiw.bluetoothmiccontol.service
 
-import android.app.*
+import android.app.Notification
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.app.Service
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import android.graphics.Color
 import android.media.AudioAttributes
 import android.media.AudioManager
 import android.media.MediaPlayer
@@ -29,10 +31,7 @@ class MicControlsService : Service() {
         private const val LOG_TAG = "${App.LOG_TAG}.MicService"
 
         private const val INFO_NOTIFICATION_ID = 1337
-        private const val INFO_NOTIFICATION_CHANNEL_ID = "MicControlsInfo"
-
         private const val CONTROLS_NOTIFICATION_ID = 1338
-        private const val CONTROLS_NOTIFICATION_CHANNEL_ID = "MicControlsService"
 
         fun getStartIntent(context: Context): Intent {
             return Intent(context, MicControlsService::class.java)
@@ -57,18 +56,7 @@ class MicControlsService : Service() {
 
         setupSounds()
 
-        createNotificationChannel(
-            INFO_NOTIFICATION_CHANNEL_ID,
-            getString(R.string.mic_control_info_notification_channel),
-            NotificationManager.IMPORTANCE_LOW,
-        )
-        createNotificationChannel(
-            CONTROLS_NOTIFICATION_CHANNEL_ID,
-            getString(R.string.mic_control_notification_channel),
-            NotificationManager.IMPORTANCE_LOW,
-        )
-
-        startForeground(INFO_NOTIFICATION_ID, createInfoNotification())
+        startForeground(INFO_NOTIFICATION_ID, createServiceRunningNotification())
 
         observeUserInCommunication()
 
@@ -101,12 +89,13 @@ class MicControlsService : Service() {
         return mediaPlayer
     }
 
-    private fun createInfoNotification(): Notification {
-        return NotificationCompat.Builder(this, INFO_NOTIFICATION_CHANNEL_ID)
-            .setSmallIcon(R.mipmap.ic_launcher_round)
-            .setContentTitle(getString(R.string.mic_control_info_notification_title))
-            .setContentText(getString(R.string.mic_control_info_notification_message))
+    private fun createServiceRunningNotification(): Notification {
+        return NotificationCompat.Builder(this, NotificationChannelService.SERVICE_NOTIFICATION_CHANNEL_ID)
+            .setSmallIcon(R.drawable.ic_notification_service_running)
+            .setContentTitle(getString(R.string.service_running_notification_title))
+            .setContentText(getString(R.string.service_running_notification_message))
             .setPriority(NotificationCompat.PRIORITY_LOW)
+            .setOnlyAlertOnce(true)
             .build()
     }
 
@@ -124,7 +113,7 @@ class MicControlsService : Service() {
                         micControlRepository.getIsVolumeMicControlEnabledFlow(),
                         micControlRepository.getIsMicMutedFlowFlow(),
                     ) { isControlEnabled, isMicMuted ->
-                        val notification = createMicControlsNotification(
+                        val notification = createMicControlNotification(
                             isMicControlEnabled = isControlEnabled,
                             isMicMuted = isMicMuted,
                         )
@@ -140,8 +129,9 @@ class MicControlsService : Service() {
             .launchIn(serviceScope)
     }
 
-    private fun createMicControlsNotification(isMicControlEnabled: Boolean, isMicMuted: Boolean): Notification {
-        val builder = controlsNotificationBuilder ?: NotificationCompat.Builder(this, CONTROLS_NOTIFICATION_CHANNEL_ID)
+    private fun createMicControlNotification(isMicControlEnabled: Boolean, isMicMuted: Boolean): Notification {
+        val builder = controlsNotificationBuilder
+            ?: NotificationCompat.Builder(this, NotificationChannelService.CONTROLS_NOTIFICATION_CHANNEL_ID)
 
         val micControlStateText =
             if (isMicControlEnabled) getString(R.string.mic_volume_control_state_enabled)
@@ -151,14 +141,17 @@ class MicControlsService : Service() {
 
         val micStateText =
             if (isMicMuted) getString(R.string.mic_state_muted)
-            else getString(R.string.mic_state_unmuted)
+            else getString(R.string.mic_state_active)
         val titleText = getString(R.string.mic_control_notification_title, micStateText)
         builder.setContentTitle(titleText)
 
         val smallIconRes = if (isMicMuted) R.drawable.ic_mic_off else R.drawable.ic_mic_on
         builder.setSmallIcon(smallIconRes)
-        builder.priority = NotificationCompat.PRIORITY_DEFAULT
+        builder.priority = NotificationCompat.PRIORITY_HIGH
         builder.setOngoing(true)
+
+        builder.setColorized(true)
+        builder.color = getColor(R.color.notification_bg_mic_active)
 
         // Create an explicit intent for an Activity in your app
         val notificationIntent = Intent(this, MainActivity::class.java)
@@ -173,10 +166,10 @@ class MicControlsService : Service() {
         builder.clearActions()
 
         val buttonLabel =
-            if (isMicControlEnabled) getString(R.string.mic_control_notification_action_disable_volume_control)
-            else getString(R.string.mic_control_notification_action_enable_volume_control)
+            if (isMicMuted) getString(R.string.mic_control_notification_action_activate_mic)
+            else getString(R.string.mic_control_notification_action_mute_mic)
 
-        val toggleIntent = Intent(this, MicVolumeControlEnabledReceiver::class.java)
+        val toggleIntent = Intent(this, NotificationMicMuteReceiver::class.java)
         val togglePendingIntent =
             PendingIntent.getBroadcast(this, 0, toggleIntent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
 
@@ -185,14 +178,6 @@ class MicControlsService : Service() {
         return builder.build()
     }
 
-    private fun createNotificationChannel(channelId: String, channelName: String, importance: Int) {
-        val channel = NotificationChannel(channelId, channelName, importance)
-        channel.lightColor = Color.RED
-        channel.lockscreenVisibility = Notification.VISIBILITY_PUBLIC
-
-        val service = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        service.createNotificationChannel(channel)
-    }
 
     private fun observeVolumeChanges() {
         volumeChangedReceiver = ScoVolumeChangedReceiver()

@@ -8,7 +8,7 @@ import dev.wiskiw.bluetoothmiccontol.data.repository.MicControlRepository
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
-class MicVolumeControlEnabledReceiver : BroadcastReceiver(), KoinComponent {
+class NotificationMicVolumeControlEnabledReceiver : BroadcastReceiver(), KoinComponent {
 
     companion object {
         private const val LOG_TAG = "${App.LOG_TAG}.MicVolCtrlRcvr"

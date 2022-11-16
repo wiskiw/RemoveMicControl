@@ -87,6 +87,10 @@ class MicControlRepository(
         setMicVolumeControlEnabled(!isMicVolumeControlEnabledFlow.value)
     }
 
+    fun onMicMuteToggled() {
+        setMicMuted(!isMicMutedFlow.value)
+    }
+
     fun onScoAudioStateChanged(state: Int) {
         when (state) {
             AudioManager.SCO_AUDIO_STATE_CONNECTING, AudioManager.SCO_AUDIO_STATE_CONNECTED ->
