@@ -18,6 +18,9 @@ class MainViewModel(
     private val _isVolumeMicControlEnabledFlow = MutableStateFlow(false)
     val isVolumeMicControlEnabledFlow = _isVolumeMicControlEnabledFlow.asStateFlow()
 
+    private val _isControlsActiveFlow = MutableStateFlow(false)
+    val isControlsActiveFlow = _isControlsActiveFlow.asStateFlow()
+
     init {
         micControlRepository.getIsMicMutedFlowFlow()
             .onEach { isMuted -> _isEnableMicCheckedFlow.value = !isMuted }
@@ -25,6 +28,10 @@ class MainViewModel(
 
         micControlRepository.getIsVolumeMicControlEnabledFlow()
             .onEach { _isVolumeMicControlEnabledFlow.value = it }
+            .launchIn(viewModelScope)
+
+        micControlRepository.getIsUserInCommunicationFlow()
+            .onEach { _isControlsActiveFlow.value = it }
             .launchIn(viewModelScope)
     }
 

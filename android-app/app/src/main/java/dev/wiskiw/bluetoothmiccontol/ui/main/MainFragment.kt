@@ -49,5 +49,12 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         viewModel.isVolumeMicControlEnabledFlow
             .onEach { viewBinding.enableVolumeControlSwitch.isChecked = it }
             .launchIn(viewLifecycleOwner.lifecycleScope)
+
+        viewModel.isControlsActiveFlow
+            .onEach {
+                viewBinding.enableMicSwitch.isEnabled = it
+                viewBinding.enableVolumeControlSwitch.isEnabled = it
+            }
+            .launchIn(viewLifecycleOwner.lifecycleScope)
     }
 }

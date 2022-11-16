@@ -14,9 +14,9 @@ class MicVolumeControlEnabledReceiver : BroadcastReceiver(), KoinComponent {
         private const val LOG_TAG = "${App.LOG_TAG}.MicVolCtrlRcvr"
     }
 
-    private val micControlUseCase: MicControlRepository by inject()
+    private val micControlRepository: MicControlRepository by inject()
 
     override fun onReceive(context: Context?, intent: Intent?) {
-        micControlUseCase.toggleMicVolumeControlEnabled()
+        micControlRepository.onMicVolumeControlEnabledToggled()
     }
 }

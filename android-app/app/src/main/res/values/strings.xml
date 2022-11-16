@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">Bluetooth Mic Control</string>
 
+    <string name="mic_control_info_notification_channel">Mic Controls Info</string>
+    <string name="mic_control_info_notification_title">Service is running</string>
+    <string name="mic_control_info_notification_message">Service is running in background and ready for calls</string>
+
     <string name="mic_control_notification_channel">Mic Controls Notifications</string>
     <string name="mic_control_notification_title">Microphone is %1$s</string>
     <string name="mic_control_notification_message">Volume controls are %1$s</string>
