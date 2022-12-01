@@ -1,0 +1,603 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F6711ED22937EED600C30C84 /* BluetoothMicControlApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6711ED12937EED600C30C84 /* BluetoothMicControlApp.swift */; };
+		F6711ED42937EED600C30C84 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6711ED32937EED600C30C84 /* ContentView.swift */; };
+		F6711ED62937EED900C30C84 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6711ED52937EED900C30C84 /* Assets.xcassets */; };
+		F6711ED92937EED900C30C84 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6711ED82937EED900C30C84 /* Preview Assets.xcassets */; };
+		F6711EE42937EED900C30C84 /* BluetoothMicControlTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6711EE32937EED900C30C84 /* BluetoothMicControlTests.swift */; };
+		F6711EEE2937EED900C30C84 /* BluetoothMicControlUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6711EED2937EED900C30C84 /* BluetoothMicControlUITests.swift */; };
+		F6711EF02937EED900C30C84 /* BluetoothMicControlUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6711EEF2937EED900C30C84 /* BluetoothMicControlUITestsLaunchTests.swift */; };
+		F6711EFF2937F09300C30C84 /* VolumeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6711EFE2937F09300C30C84 /* VolumeService.swift */; };
+		F6711F032937F14500C30C84 /* MicControlViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6711F022937F14500C30C84 /* MicControlViewModel.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F6711EE02937EED900C30C84 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F6711EC62937EED600C30C84 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F6711ECD2937EED600C30C84;
+			remoteInfo = BluetoothMicControl;
+		};
+		F6711EEA2937EED900C30C84 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F6711EC62937EED600C30C84 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F6711ECD2937EED600C30C84;
+			remoteInfo = BluetoothMicControl;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F6711ECE2937EED600C30C84 /* BluetoothMicControl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BluetoothMicControl.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F6711ED12937EED600C30C84 /* BluetoothMicControlApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothMicControlApp.swift; sourceTree = "<group>"; };
+		F6711ED32937EED600C30C84 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		F6711ED52937EED900C30C84 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F6711ED82937EED900C30C84 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		F6711EDA2937EED900C30C84 /* BluetoothMicControl.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BluetoothMicControl.entitlements; sourceTree = "<group>"; };
+		F6711EDF2937EED900C30C84 /* BluetoothMicControlTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BluetoothMicControlTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F6711EE32937EED900C30C84 /* BluetoothMicControlTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothMicControlTests.swift; sourceTree = "<group>"; };
+		F6711EE92937EED900C30C84 /* BluetoothMicControlUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BluetoothMicControlUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F6711EED2937EED900C30C84 /* BluetoothMicControlUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothMicControlUITests.swift; sourceTree = "<group>"; };
+		F6711EEF2937EED900C30C84 /* BluetoothMicControlUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothMicControlUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		F6711EFE2937F09300C30C84 /* VolumeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeService.swift; sourceTree = "<group>"; };
+		F6711F022937F14500C30C84 /* MicControlViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicControlViewModel.swift; sourceTree = "<group>"; };
+		F6711F042937F7CE00C30C84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F6711ECB2937EED600C30C84 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F6711EDC2937EED900C30C84 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F6711EE62937EED900C30C84 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F6711EC52937EED600C30C84 = {
+			isa = PBXGroup;
+			children = (
+				F6711ED02937EED600C30C84 /* BluetoothMicControl */,
+				F6711EE22937EED900C30C84 /* BluetoothMicControlTests */,
+				F6711EEC2937EED900C30C84 /* BluetoothMicControlUITests */,
+				F6711ECF2937EED600C30C84 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F6711ECF2937EED600C30C84 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F6711ECE2937EED600C30C84 /* BluetoothMicControl.app */,
+				F6711EDF2937EED900C30C84 /* BluetoothMicControlTests.xctest */,
+				F6711EE92937EED900C30C84 /* BluetoothMicControlUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F6711ED02937EED600C30C84 /* BluetoothMicControl */ = {
+			isa = PBXGroup;
+			children = (
+				F6711F042937F7CE00C30C84 /* Info.plist */,
+				F6711F012937F12B00C30C84 /* View Models */,
+				F6711EFD2937F05F00C30C84 /* Services */,
+				F6711ED12937EED600C30C84 /* BluetoothMicControlApp.swift */,
+				F6711ED32937EED600C30C84 /* ContentView.swift */,
+				F6711ED52937EED900C30C84 /* Assets.xcassets */,
+				F6711EDA2937EED900C30C84 /* BluetoothMicControl.entitlements */,
+				F6711ED72937EED900C30C84 /* Preview Content */,
+			);
+			path = BluetoothMicControl;
+			sourceTree = "<group>";
+		};
+		F6711ED72937EED900C30C84 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				F6711ED82937EED900C30C84 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		F6711EE22937EED900C30C84 /* BluetoothMicControlTests */ = {
+			isa = PBXGroup;
+			children = (
+				F6711EE32937EED900C30C84 /* BluetoothMicControlTests.swift */,
+			);
+			path = BluetoothMicControlTests;
+			sourceTree = "<group>";
+		};
+		F6711EEC2937EED900C30C84 /* BluetoothMicControlUITests */ = {
+			isa = PBXGroup;
+			children = (
+				F6711EED2937EED900C30C84 /* BluetoothMicControlUITests.swift */,
+				F6711EEF2937EED900C30C84 /* BluetoothMicControlUITestsLaunchTests.swift */,
+			);
+			path = BluetoothMicControlUITests;
+			sourceTree = "<group>";
+		};
+		F6711EFD2937F05F00C30C84 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				F6711EFE2937F09300C30C84 /* VolumeService.swift */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
+		F6711F012937F12B00C30C84 /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				F6711F022937F14500C30C84 /* MicControlViewModel.swift */,
+			);
+			name = "View Models";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F6711ECD2937EED600C30C84 /* BluetoothMicControl */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F6711EF32937EED900C30C84 /* Build configuration list for PBXNativeTarget "BluetoothMicControl" */;
+			buildPhases = (
+				F6711ECA2937EED600C30C84 /* Sources */,
+				F6711ECB2937EED600C30C84 /* Frameworks */,
+				F6711ECC2937EED600C30C84 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BluetoothMicControl;
+			productName = BluetoothMicControl;
+			productReference = F6711ECE2937EED600C30C84 /* BluetoothMicControl.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F6711EDE2937EED900C30C84 /* BluetoothMicControlTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F6711EF62937EED900C30C84 /* Build configuration list for PBXNativeTarget "BluetoothMicControlTests" */;
+			buildPhases = (
+				F6711EDB2937EED900C30C84 /* Sources */,
+				F6711EDC2937EED900C30C84 /* Frameworks */,
+				F6711EDD2937EED900C30C84 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F6711EE12937EED900C30C84 /* PBXTargetDependency */,
+			);
+			name = BluetoothMicControlTests;
+			productName = BluetoothMicControlTests;
+			productReference = F6711EDF2937EED900C30C84 /* BluetoothMicControlTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		F6711EE82937EED900C30C84 /* BluetoothMicControlUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F6711EF92937EED900C30C84 /* Build configuration list for PBXNativeTarget "BluetoothMicControlUITests" */;
+			buildPhases = (
+				F6711EE52937EED900C30C84 /* Sources */,
+				F6711EE62937EED900C30C84 /* Frameworks */,
+				F6711EE72937EED900C30C84 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F6711EEB2937EED900C30C84 /* PBXTargetDependency */,
+			);
+			name = BluetoothMicControlUITests;
+			productName = BluetoothMicControlUITests;
+			productReference = F6711EE92937EED900C30C84 /* BluetoothMicControlUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F6711EC62937EED600C30C84 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1340;
+				LastUpgradeCheck = 1340;
+				TargetAttributes = {
+					F6711ECD2937EED600C30C84 = {
+						CreatedOnToolsVersion = 13.4.1;
+					};
+					F6711EDE2937EED900C30C84 = {
+						CreatedOnToolsVersion = 13.4.1;
+						TestTargetID = F6711ECD2937EED600C30C84;
+					};
+					F6711EE82937EED900C30C84 = {
+						CreatedOnToolsVersion = 13.4.1;
+						TestTargetID = F6711ECD2937EED600C30C84;
+					};
+				};
+			};
+			buildConfigurationList = F6711EC92937EED600C30C84 /* Build configuration list for PBXProject "BluetoothMicControl" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F6711EC52937EED600C30C84;
+			productRefGroup = F6711ECF2937EED600C30C84 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F6711ECD2937EED600C30C84 /* BluetoothMicControl */,
+				F6711EDE2937EED900C30C84 /* BluetoothMicControlTests */,
+				F6711EE82937EED900C30C84 /* BluetoothMicControlUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F6711ECC2937EED600C30C84 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F6711ED92937EED900C30C84 /* Preview Assets.xcassets in Resources */,
+				F6711ED62937EED900C30C84 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F6711EDD2937EED900C30C84 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F6711EE72937EED900C30C84 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F6711ECA2937EED600C30C84 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F6711ED42937EED600C30C84 /* ContentView.swift in Sources */,
+				F6711EFF2937F09300C30C84 /* VolumeService.swift in Sources */,
+				F6711F032937F14500C30C84 /* MicControlViewModel.swift in Sources */,
+				F6711ED22937EED600C30C84 /* BluetoothMicControlApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F6711EDB2937EED900C30C84 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F6711EE42937EED900C30C84 /* BluetoothMicControlTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F6711EE52937EED900C30C84 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F6711EEE2937EED900C30C84 /* BluetoothMicControlUITests.swift in Sources */,
+				F6711EF02937EED900C30C84 /* BluetoothMicControlUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F6711EE12937EED900C30C84 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F6711ECD2937EED600C30C84 /* BluetoothMicControl */;
+			targetProxy = F6711EE02937EED900C30C84 /* PBXContainerItemProxy */;
+		};
+		F6711EEB2937EED900C30C84 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F6711ECD2937EED600C30C84 /* BluetoothMicControl */;
+			targetProxy = F6711EEA2937EED900C30C84 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		F6711EF12937EED900C30C84 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		F6711EF22937EED900C30C84 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		F6711EF42937EED900C30C84 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = BluetoothMicControl/BluetoothMicControl.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"BluetoothMicControl/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BluetoothMicControl/Info.plist;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.wiskiw.BluetoothMicControl;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		F6711EF52937EED900C30C84 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = BluetoothMicControl/BluetoothMicControl.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"BluetoothMicControl/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BluetoothMicControl/Info.plist;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.wiskiw.BluetoothMicControl;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		F6711EF72937EED900C30C84 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.wiskiw.BluetoothMicControlTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BluetoothMicControl.app/Contents/MacOS/BluetoothMicControl";
+			};
+			name = Debug;
+		};
+		F6711EF82937EED900C30C84 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.wiskiw.BluetoothMicControlTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BluetoothMicControl.app/Contents/MacOS/BluetoothMicControl";
+			};
+			name = Release;
+		};
+		F6711EFA2937EED900C30C84 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.wiskiw.BluetoothMicControlUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = BluetoothMicControl;
+			};
+			name = Debug;
+		};
+		F6711EFB2937EED900C30C84 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.wiskiw.BluetoothMicControlUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = BluetoothMicControl;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F6711EC92937EED600C30C84 /* Build configuration list for PBXProject "BluetoothMicControl" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F6711EF12937EED900C30C84 /* Debug */,
+				F6711EF22937EED900C30C84 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F6711EF32937EED900C30C84 /* Build configuration list for PBXNativeTarget "BluetoothMicControl" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F6711EF42937EED900C30C84 /* Debug */,
+				F6711EF52937EED900C30C84 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F6711EF62937EED900C30C84 /* Build configuration list for PBXNativeTarget "BluetoothMicControlTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F6711EF72937EED900C30C84 /* Debug */,
+				F6711EF82937EED900C30C84 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F6711EF92937EED900C30C84 /* Build configuration list for PBXNativeTarget "BluetoothMicControlUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F6711EFA2937EED900C30C84 /* Debug */,
+				F6711EFB2937EED900C30C84 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F6711EC62937EED600C30C84 /* Project object */;
+}
