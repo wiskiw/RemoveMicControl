@@ -9,14 +9,14 @@ import Foundation
 
 class MicControlViewModel : ObservableObject {
     
-    private let volumeService = VolumeService()
+    private let volumeService = OutputVolumeService()
+    private let micService = MicrophoneService()
     
     @Published var debugMessage : String = "nothing"
     
     init() {
         volumeService.onVolumeChangedListener = { old, new in
             print("volume: \(old) -> \(new)")
-            self.volumeService.setVolume(volume: old)
         }
     }
     

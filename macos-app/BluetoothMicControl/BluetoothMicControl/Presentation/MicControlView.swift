@@ -6,11 +6,8 @@
 //
 
 import SwiftUI
-import Cocoa
-import CoreAudio
-import AudioToolbox
 
-struct ContentView: View {
+struct MicControlView: View {
     
     
     @StateObject private var vm : MicControlViewModel
@@ -37,7 +34,7 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(vm : MicControlViewModel())
+        MicControlView(vm : MicControlViewModel())
     }
 }
 

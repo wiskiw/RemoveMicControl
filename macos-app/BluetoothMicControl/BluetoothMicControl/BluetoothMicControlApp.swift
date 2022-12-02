@@ -6,28 +6,36 @@
 //
 
 import SwiftUI
+import AudioToolbox
+import AVKit
 
 @main
 struct BluetoothMicControlApp: App {
-    
-    @State var currentNumber: String = "1"
 
     var body: some Scene {
             WindowGroup {
-                ContentView(vm:MicControlViewModel())
+                MicControlView(vm:MicControlViewModel())
             }
-//            MenuBarExtra(currentNumber, systemImage: "\(currentNumber).circle") {
-//
-//                Button("One") {
-//                    currentNumber = "1"
-//                }
-//                Button("Two") {
-//                    currentNumber = "2"
-//                }
-//                Button("Three") {
-//                    currentNumber = "3"
-//                }
-//            }
         }
+
+    init() {
+        switch AVCaptureDevice.authorizationStatus(for: .audio) {
+            case .notDetermined:
+                AVCaptureDevice.requestAccess(for: .audio) { granted in
+                    if !granted {
+                        NSLog("Can't get access to the mic.")
+                        exit(1)
+                    }
+                }
+            
+            case .denied:
+                fallthrough
+            case .restricted:
+                NSLog("Can't get access to the mic.")
+                exit(1)
+            default:
+                print("Already has permission");
+        }
+    }
     
 }

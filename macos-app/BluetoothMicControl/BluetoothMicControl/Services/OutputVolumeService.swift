@@ -1,5 +1,5 @@
 //
-//  VolumeWatcherService.swift
+//  OutputVolumeService.swift
 //  BluetoothMicControl
 //
 //  Created by Andrei Yablonski on 30.11.22.
@@ -8,7 +8,7 @@
 import Foundation
 import AudioToolbox
 
-class VolumeService {
+class OutputVolumeService {
     
     private lazy var deviceId : AudioDeviceID =  self.getDefaultOutputDeviceID()
     private lazy var onVolumeChangedCallback : AudioObjectPropertyListenerBlock = { _, _ in self.handleVolumeChangedEvent()}
@@ -64,7 +64,7 @@ class VolumeService {
             self.lastVolume = newVolume
             
             if self.onVolumeChangedListener != nil {
-                self.onVolumeChangedListener(lastVolume, newVolume)
+                self.onVolumeChangedListener(old, newVolume)
             }
           
         }
@@ -89,11 +89,6 @@ class VolumeService {
     func setVolume(volume : Float) {
         var volume32 = Float32(volume) // 0.0 ... 1.0
         let volumeSize = UInt32(MemoryLayout.size(ofValue: volume32))
-
-        let volumePropertyAddress = AudioObjectPropertyAddress(
-            mSelector: kAudioHardwareServiceDeviceProperty_VirtualMainVolume,
-            mScope: kAudioDevicePropertyScopeOutput,
-            mElement: kAudioObjectPropertyElementMain)
 
         AudioObjectSetPropertyData(
             self.deviceId,
