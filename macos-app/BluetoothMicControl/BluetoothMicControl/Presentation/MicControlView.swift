@@ -19,7 +19,7 @@ struct MicControlView: View {
 
     var body: some View {
         VStack(alignment: .center) {
-            Text("Some text here")
+            Text("All mics muted: \(String(vm.isMicsMuted))")
                 .padding()
             Spacer()
             Text(vm.debugMessage)

@@ -1,0 +1,113 @@
+//
+//  VolumeWatcherService.swift
+//  BluetoothMicControl
+//
+//  Created by Andrei Yablonski on 01.12.22.
+//
+
+import SimplyCoreAudio
+
+class MicrophoneService {
+
+    private let simplyCA = SimplyCoreAudio()
+    private var micConfigDict = [AudioDevice: MicConfig]()
+
+    init (){
+        var observer = NotificationCenter.default.addObserver(forName: .deviceListChanged,
+                                                              object: nil,
+                                                              queue: .main) { (notification) in
+            print("Device list changed")
+            scanMics()
+        }
+
+        scanMics()
+
+
+        if let defaultMic = simplyCA.defaultInputDevice {
+            print("defaultMic \(defaultMic)")
+            let isMuted = defaultMic.isMuted(channel: 0, scope: .input)
+            print("isMuted \(isMuted)")
+
+
+            // e.g., subscribing to `deviceNominalSampleRateDidChange` notification.
+            var observer = NotificationCenter.default.addObserver(forName: .deviceMuteDidChange,
+                                                                  object: defaultMic,
+                                                                  queue: .main) { (notification) in
+                print("-----")
+                print("notification \(notification)")
+                let isMuted = defaultMic.isMuted(channel: 0, scope: .input)
+                print("isMuted \(isMuted)")
+            }
+
+            let setMuteResult = defaultMic.setMute(true, channel: .zero, scope: .input)
+            print("setMuteResult \(setMuteResult)")
+
+            //            // to move volume bar in System Preferences
+            //            let setVolumeResult = defaultMic.setVolume(0, channel: 0, scope: .input)
+            //            print("setVolumeResult \(setVolumeResult)")
+
+            //            let setMuteResult2 = defaultMic.setMute(false, channel: 0, scope: .input)
+            //            print("setMuteResult2 \(setMuteResult2)")
+
+
+        }
+
+    }
+
+    private func scanMics() {
+        simplyCA.allInputDevices
+            .compactMap{$0} // filter not optinal
+            .filter{ device in
+                self.micConfigDict[device] == nil
+            }
+            .forEach { newDevice in
+                if let volume = newDevice.volume(channel: 0, scope: .input){
+                    let config = MicConfig(originalVolume: volume)
+                    self.micConfigDict[newDevice] = config
+
+                    print("Found input device '\(newDevice.name)': \(config)")
+                }
+            }
+    }
+
+    func muteAll() {
+        for (device, _) in self.micConfigDict {
+            let isMuted = device.setMute(true, channel: 0, scope: .input)
+
+            // to move volume bar in System Preferences
+            let isVolumeSet = device.setVolume(0, channel: 0, scope: .input)
+
+            if (isMuted || isVolumeSet){
+                print("Mic '\(device)' was muted")
+            } else {
+                print("Failed to mute '\(device)'")
+            }
+
+
+        }
+    }
+
+    func activateAll() {
+        for (device, config) in self.micConfigDict {
+            let isActivated = device.setMute(false, channel: 0, scope: .input)
+
+            // to move volume bar in System Preferences
+            let isVolumeSet = device.setVolume(config.originalVolume, channel: 0, scope: .input)
+
+            if (isActivated || isVolumeSet){
+                print("Mic '\(device)' was activated")
+            } else {
+                print("Failed to activate '\(device)'")
+            }
+
+            // to move volume bar in System Preferences
+            device.setVolume(0, channel: 0, scope: .input)
+        }
+    }
+
+    struct MicConfig {
+        let originalVolume : Float
+    }
+}
+
+

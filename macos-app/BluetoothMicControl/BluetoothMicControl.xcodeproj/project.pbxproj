@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0ED8478A1AB89E2D00710ABA /* BluetoothMicControlApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED847891AB89E2D00710ABA /* BluetoothMicControlApp.swift */; };
 		BA7BED1B1DF5EE9E004DA990 /* MicrophoneService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7BED1A1DF5EE9E004DA990 /* MicrophoneService.swift */; };
+		F63175CB293A6EA600556B17 /* SimplyCoreAudio in Frameworks */ = {isa = PBXBuildFile; productRef = F63175CA293A6EA600556B17 /* SimplyCoreAudio */; };
 		F63B5F6A293A5CCC007AF54A /* MicControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63B5F66293A5CCC007AF54A /* MicControlView.swift */; };
 		F63B5F6B293A5CCC007AF54A /* OutputVolumeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63B5F67293A5CCC007AF54A /* OutputVolumeService.swift */; };
 		F63B5F6C293A5CCC007AF54A /* MicControlViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63B5F68293A5CCC007AF54A /* MicControlViewModel.swift */; };
@@ -30,6 +31,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F63175CB293A6EA600556B17 /* SimplyCoreAudio in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,6 +101,7 @@
 			);
 			name = BluetoothMicControl;
 			packageProductDependencies = (
+				F63175CA293A6EA600556B17 /* SimplyCoreAudio */,
 			);
 			productName = BluetoothMicControl;
 			productReference = 0ED847841AB89E2D00710ABA /* BluetoothMicControl.app */;
@@ -126,6 +129,7 @@
 			);
 			mainGroup = 0ED8477B1AB89E2D00710ABA;
 			packageReferences = (
+				F63175C9293A6EA600556B17 /* XCRemoteSwiftPackageReference "SimplyCoreAudio" */,
 			);
 			productRefGroup = 0ED847851AB89E2D00710ABA /* Products */;
 			projectDirPath = "";
@@ -338,6 +342,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F63175C9293A6EA600556B17 /* XCRemoteSwiftPackageReference "SimplyCoreAudio" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/rnine/SimplyCoreAudio.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F63175CA293A6EA600556B17 /* SimplyCoreAudio */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F63175C9293A6EA600556B17 /* XCRemoteSwiftPackageReference "SimplyCoreAudio" */;
+			productName = SimplyCoreAudio;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0ED8477C1AB89E2D00710ABA /* Project object */;
 }
