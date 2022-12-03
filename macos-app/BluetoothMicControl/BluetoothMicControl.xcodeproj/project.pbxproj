@@ -3,100 +3,101 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0ED8478A1AB89E2D00710ABA /* BluetoothMicControlApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED847891AB89E2D00710ABA /* BluetoothMicControlApp.swift */; };
-		BA7BED1B1DF5EE9E004DA990 /* InputDeviceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7BED1A1DF5EE9E004DA990 /* InputDeviceService.swift */; };
-		F6252475293AB1D7004087D5 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6252474293AB1D7004087D5 /* Utils.swift */; };
-		F6252477293AE460004087D5 /* InputDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6252476293AE460004087D5 /* InputDevice.swift */; };
-		F6252479293B5BD1004087D5 /* OutputDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6252478293B5BD1004087D5 /* OutputDevice.swift */; };
-		F63175CB293A6EA600556B17 /* SimplyCoreAudio in Frameworks */ = {isa = PBXBuildFile; productRef = F63175CA293A6EA600556B17 /* SimplyCoreAudio */; };
-		F63B5F6A293A5CCC007AF54A /* MicControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63B5F66293A5CCC007AF54A /* MicControlView.swift */; };
-		F63B5F6B293A5CCC007AF54A /* OutputDeviceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63B5F67293A5CCC007AF54A /* OutputDeviceService.swift */; };
-		F63B5F6C293A5CCC007AF54A /* MicControlViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63B5F68293A5CCC007AF54A /* MicControlViewModel.swift */; };
+		F605F360293BF982002820F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F605F35F293BF982002820F4 /* Assets.xcassets */; };
+		F6AC8242293BFC20003C7C97 /* SimplyCoreAudio in Frameworks */ = {isa = PBXBuildFile; productRef = F6AC8241293BFC20003C7C97 /* SimplyCoreAudio */; };
+		F6AC8252293BFCF4003C7C97 /* InputDeviceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AC8250293BFCF4003C7C97 /* InputDeviceService.swift */; };
+		F6AC8253293BFCF4003C7C97 /* OutputDeviceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AC8251293BFCF4003C7C97 /* OutputDeviceService.swift */; };
+		F6AC825B293BFD3C003C7C97 /* OutputDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AC8259293BFD3C003C7C97 /* OutputDevice.swift */; };
+		F6AC825C293BFD3C003C7C97 /* InputDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AC825A293BFD3C003C7C97 /* InputDevice.swift */; };
+		F6AC825E293BFD50003C7C97 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AC825D293BFD50003C7C97 /* Utils.swift */; };
+		F6AC8260293BFDD8003C7C97 /* BluetoothMicControlApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AC825F293BFDD8003C7C97 /* BluetoothMicControlApp.swift */; };
+		F6D6F8B3293BFB3E0044CC60 /* MicControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D6F8B2293BFB3E0044CC60 /* MicControlView.swift */; };
+		F6D6F8B6293BFB680044CC60 /* MicControlViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D6F8B5293BFB680044CC60 /* MicControlViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0ED847841AB89E2D00710ABA /* BluetoothMicControl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BluetoothMicControl.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		0ED847881AB89E2D00710ABA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0ED847891AB89E2D00710ABA /* BluetoothMicControlApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothMicControlApp.swift; sourceTree = "<group>"; };
-		0ED847941AB89E2E00710ABA /* .xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = .xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		BA7BED1A1DF5EE9E004DA990 /* InputDeviceService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputDeviceService.swift; sourceTree = "<group>"; };
-		F6252474293AB1D7004087D5 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
-		F6252476293AE460004087D5 /* InputDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputDevice.swift; sourceTree = "<group>"; };
-		F6252478293B5BD1004087D5 /* OutputDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutputDevice.swift; sourceTree = "<group>"; };
-		F63B5F66293A5CCC007AF54A /* MicControlView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MicControlView.swift; sourceTree = "<group>"; };
-		F63B5F67293A5CCC007AF54A /* OutputDeviceService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutputDeviceService.swift; sourceTree = "<group>"; };
-		F63B5F68293A5CCC007AF54A /* MicControlViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MicControlViewModel.swift; sourceTree = "<group>"; };
+		F605F358293BF982002820F4 /* BluetoothMicControl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BluetoothMicControl.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F605F35F293BF982002820F4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F605F364293BF982002820F4 /* BluetoothMicControl.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BluetoothMicControl.entitlements; sourceTree = "<group>"; };
+		F6AC8250293BFCF4003C7C97 /* InputDeviceService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputDeviceService.swift; sourceTree = "<group>"; };
+		F6AC8251293BFCF4003C7C97 /* OutputDeviceService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutputDeviceService.swift; sourceTree = "<group>"; };
+		F6AC8259293BFD3C003C7C97 /* OutputDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutputDevice.swift; sourceTree = "<group>"; };
+		F6AC825A293BFD3C003C7C97 /* InputDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputDevice.swift; sourceTree = "<group>"; };
+		F6AC825D293BFD50003C7C97 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utils.swift; path = BluetoothMicControl/Utils.swift; sourceTree = SOURCE_ROOT; };
+		F6AC825F293BFDD8003C7C97 /* BluetoothMicControlApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothMicControlApp.swift; sourceTree = "<group>"; };
+		F6D6F8B2293BFB3E0044CC60 /* MicControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicControlView.swift; sourceTree = "<group>"; };
+		F6D6F8B5293BFB680044CC60 /* MicControlViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicControlViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		0ED847811AB89E2D00710ABA /* Frameworks */ = {
+		F605F355293BF982002820F4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F63175CB293A6EA600556B17 /* SimplyCoreAudio in Frameworks */,
+				F6AC8242293BFC20003C7C97 /* SimplyCoreAudio in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0ED8477B1AB89E2D00710ABA = {
+		F605F34F293BF982002820F4 = {
 			isa = PBXGroup;
 			children = (
-				0ED847861AB89E2D00710ABA /* BluetoothMicControl */,
-				0ED847851AB89E2D00710ABA /* Products */,
+				F605F35A293BF982002820F4 /* BluetoothMicControl */,
+				F605F359293BF982002820F4 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		0ED847851AB89E2D00710ABA /* Products */ = {
+		F605F359293BF982002820F4 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0ED847841AB89E2D00710ABA /* BluetoothMicControl.app */,
-				0ED847941AB89E2E00710ABA /* .xctest */,
+				F605F358293BF982002820F4 /* BluetoothMicControl.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		0ED847861AB89E2D00710ABA /* BluetoothMicControl */ = {
+		F605F35A293BF982002820F4 /* BluetoothMicControl */ = {
 			isa = PBXGroup;
 			children = (
-				F625247A293B7BFD004087D5 /* Models */,
-				F654E3BB293A5FFD008318FA /* Presentation */,
-				F63B5F6E293A5CDB007AF54A /* Services */,
-				0ED847881AB89E2D00710ABA /* Info.plist */,
-				0ED847891AB89E2D00710ABA /* BluetoothMicControlApp.swift */,
-				F6252474293AB1D7004087D5 /* Utils.swift */,
+				F6D6F8B4293BFB590044CC60 /* Presentation */,
+				F6AC8258293BFD3C003C7C97 /* Models */,
+				F6AC824F293BFCD5003C7C97 /* Services */,
+				F6AC825D293BFD50003C7C97 /* Utils.swift */,
+				F605F364293BF982002820F4 /* BluetoothMicControl.entitlements */,
+				F6AC825F293BFDD8003C7C97 /* BluetoothMicControlApp.swift */,
+				F605F35F293BF982002820F4 /* Assets.xcassets */,
 			);
 			path = BluetoothMicControl;
 			sourceTree = "<group>";
 		};
-		F625247A293B7BFD004087D5 /* Models */ = {
+		F6AC824F293BFCD5003C7C97 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				F6252478293B5BD1004087D5 /* OutputDevice.swift */,
-				F6252476293AE460004087D5 /* InputDevice.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		F63B5F6E293A5CDB007AF54A /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				BA7BED1A1DF5EE9E004DA990 /* InputDeviceService.swift */,
-				F63B5F67293A5CCC007AF54A /* OutputDeviceService.swift */,
+				F6AC8250293BFCF4003C7C97 /* InputDeviceService.swift */,
+				F6AC8251293BFCF4003C7C97 /* OutputDeviceService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
 		};
-		F654E3BB293A5FFD008318FA /* Presentation */ = {
+		F6AC8258293BFD3C003C7C97 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				F63B5F66293A5CCC007AF54A /* MicControlView.swift */,
-				F63B5F68293A5CCC007AF54A /* MicControlViewModel.swift */,
+				F6AC8259293BFD3C003C7C97 /* OutputDevice.swift */,
+				F6AC825A293BFD3C003C7C97 /* InputDevice.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		F6D6F8B4293BFB590044CC60 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				F6D6F8B2293BFB3E0044CC60 /* MicControlView.swift */,
+				F6D6F8B5293BFB680044CC60 /* MicControlViewModel.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -104,13 +105,13 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		0ED847831AB89E2D00710ABA /* BluetoothMicControl */ = {
+		F605F357293BF982002820F4 /* BluetoothMicControl */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0ED8479E1AB89E2E00710ABA /* Build configuration list for PBXNativeTarget "BluetoothMicControl" */;
+			buildConfigurationList = F605F367293BF982002820F4 /* Build configuration list for PBXNativeTarget "BluetoothMicControl" */;
 			buildPhases = (
-				0ED847801AB89E2D00710ABA /* Sources */,
-				0ED847811AB89E2D00710ABA /* Frameworks */,
-				0ED847821AB89E2D00710ABA /* Resources */,
+				F605F354293BF982002820F4 /* Sources */,
+				F605F355293BF982002820F4 /* Frameworks */,
+				F605F356293BF982002820F4 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -118,89 +119,95 @@
 			);
 			name = BluetoothMicControl;
 			packageProductDependencies = (
-				F63175CA293A6EA600556B17 /* SimplyCoreAudio */,
+				F6AC8241293BFC20003C7C97 /* SimplyCoreAudio */,
 			);
 			productName = BluetoothMicControl;
-			productReference = 0ED847841AB89E2D00710ABA /* BluetoothMicControl.app */;
+			productReference = F605F358293BF982002820F4 /* BluetoothMicControl.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		0ED8477C1AB89E2D00710ABA /* Project object */ = {
+		F605F350293BF982002820F4 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1410;
+				LastUpgradeCheck = 1410;
 				TargetAttributes = {
-					0ED847831AB89E2D00710ABA = {
-						CreatedOnToolsVersion = 13.4.2;
+					F605F357293BF982002820F4 = {
+						CreatedOnToolsVersion = 14.1;
 					};
 				};
 			};
-			buildConfigurationList = 0ED8477F1AB89E2D00710ABA /* Build configuration list for PBXProject "BluetoothMicControl" */;
-			compatibilityVersion = "Xcode 13.0";
+			buildConfigurationList = F605F353293BF982002820F4 /* Build configuration list for PBXProject "BluetoothMicControl" */;
+			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = 0ED8477B1AB89E2D00710ABA;
+			mainGroup = F605F34F293BF982002820F4;
 			packageReferences = (
-				F63175C9293A6EA600556B17 /* XCRemoteSwiftPackageReference "SimplyCoreAudio" */,
+				F6AC8240293BFC20003C7C97 /* XCRemoteSwiftPackageReference "SimplyCoreAudio" */,
 			);
-			productRefGroup = 0ED847851AB89E2D00710ABA /* Products */;
+			productRefGroup = F605F359293BF982002820F4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				0ED847831AB89E2D00710ABA /* BluetoothMicControl */,
+				F605F357293BF982002820F4 /* BluetoothMicControl */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		0ED847821AB89E2D00710ABA /* Resources */ = {
+		F605F356293BF982002820F4 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F605F360293BF982002820F4 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		0ED847801AB89E2D00710ABA /* Sources */ = {
+		F605F354293BF982002820F4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0ED8478A1AB89E2D00710ABA /* BluetoothMicControlApp.swift in Sources */,
-				BA7BED1B1DF5EE9E004DA990 /* InputDeviceService.swift in Sources */,
-				F63B5F6A293A5CCC007AF54A /* MicControlView.swift in Sources */,
-				F63B5F6B293A5CCC007AF54A /* OutputDeviceService.swift in Sources */,
-				F63B5F6C293A5CCC007AF54A /* MicControlViewModel.swift in Sources */,
-				F6252477293AE460004087D5 /* InputDevice.swift in Sources */,
-				F6252479293B5BD1004087D5 /* OutputDevice.swift in Sources */,
-				F6252475293AB1D7004087D5 /* Utils.swift in Sources */,
+				F6AC8260293BFDD8003C7C97 /* BluetoothMicControlApp.swift in Sources */,
+				F6AC825C293BFD3C003C7C97 /* InputDevice.swift in Sources */,
+				F6D6F8B3293BFB3E0044CC60 /* MicControlView.swift in Sources */,
+				F6AC8252293BFCF4003C7C97 /* InputDeviceService.swift in Sources */,
+				F6AC825E293BFD50003C7C97 /* Utils.swift in Sources */,
+				F6AC8253293BFCF4003C7C97 /* OutputDeviceService.swift in Sources */,
+				F6D6F8B6293BFB680044CC60 /* MicControlViewModel.swift in Sources */,
+				F6AC825B293BFD3C003C7C97 /* OutputDevice.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		0ED8479C1AB89E2E00710ABA /* Debug */ = {
+		F605F365293BF982002820F4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
@@ -213,14 +220,14 @@
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
-				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -228,37 +235,39 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.4;
-				MTL_ENABLE_DEBUG_INFO = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
-		0ED8479D1AB89E2E00710ABA /* Release */ = {
+		F605F366293BF982002820F4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
@@ -271,15 +280,14 @@
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
-				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -287,55 +295,59 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.4;
+				MACOSX_DEPLOYMENT_TARGET = 12.5;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
-		0ED8479F1AB89E2E00710ABA /* Debug */ = {
+		F605F368293BF982002820F4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "-";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = BluetoothMicControl/BluetoothMicControl.entitlements;
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEAD_CODE_STRIPPING = YES;
-				INFOPLIST_FILE = BluetoothMicControl/Info.plist;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 12.4;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = dev.wiskiw.BluetoothMicControl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
-		0ED847A01AB89E2E00710ABA /* Release */ = {
+		F605F369293BF982002820F4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "-";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = BluetoothMicControl/BluetoothMicControl.entitlements;
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEAD_CODE_STRIPPING = YES;
-				INFOPLIST_FILE = BluetoothMicControl/Info.plist;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 12.4;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = dev.wiskiw.BluetoothMicControl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -343,20 +355,20 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0ED8477F1AB89E2D00710ABA /* Build configuration list for PBXProject "BluetoothMicControl" */ = {
+		F605F353293BF982002820F4 /* Build configuration list for PBXProject "BluetoothMicControl" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				0ED8479C1AB89E2E00710ABA /* Debug */,
-				0ED8479D1AB89E2E00710ABA /* Release */,
+				F605F365293BF982002820F4 /* Debug */,
+				F605F366293BF982002820F4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0ED8479E1AB89E2E00710ABA /* Build configuration list for PBXNativeTarget "BluetoothMicControl" */ = {
+		F605F367293BF982002820F4 /* Build configuration list for PBXNativeTarget "BluetoothMicControl" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				0ED8479F1AB89E2E00710ABA /* Debug */,
-				0ED847A01AB89E2E00710ABA /* Release */,
+				F605F368293BF982002820F4 /* Debug */,
+				F605F369293BF982002820F4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -364,7 +376,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		F63175C9293A6EA600556B17 /* XCRemoteSwiftPackageReference "SimplyCoreAudio" */ = {
+		F6AC8240293BFC20003C7C97 /* XCRemoteSwiftPackageReference "SimplyCoreAudio" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/rnine/SimplyCoreAudio.git";
 			requirement = {
@@ -375,12 +387,12 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		F63175CA293A6EA600556B17 /* SimplyCoreAudio */ = {
+		F6AC8241293BFC20003C7C97 /* SimplyCoreAudio */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = F63175C9293A6EA600556B17 /* XCRemoteSwiftPackageReference "SimplyCoreAudio" */;
+			package = F6AC8240293BFC20003C7C97 /* XCRemoteSwiftPackageReference "SimplyCoreAudio" */;
 			productName = SimplyCoreAudio;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
-	rootObject = 0ED8477C1AB89E2D00710ABA /* Project object */;
+	rootObject = F605F350293BF982002820F4 /* Project object */;
 }
