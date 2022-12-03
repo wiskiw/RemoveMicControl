@@ -11,15 +11,15 @@ struct MicControlView: View {
     
     
     @StateObject private var vm : MicControlViewModel
-
+    
     init(vm : MicControlViewModel){
         self._vm = StateObject(wrappedValue: vm)
     }
     
-
+    
     var body: some View {
         VStack(alignment: .center) {
-            Text("All mics muted: \(String(vm.isMicsMuted))")
+            Text(vm.isMicsMuted ? "Mic is MUTED" : "Mic is ACTIVE")
                 .padding()
             Spacer()
             Text(vm.debugMessage)
@@ -29,7 +29,7 @@ struct MicControlView: View {
                 }
         }.frame(width: 300, height: 300)
     }
-
+    
 }
 
 struct ContentView_Previews: PreviewProvider {

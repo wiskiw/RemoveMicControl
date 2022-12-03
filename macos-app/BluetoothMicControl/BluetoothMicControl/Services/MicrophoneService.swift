@@ -10,14 +10,16 @@ import SimplyCoreAudio
 
 class MicrophoneService {
     
-    private let simplyCA = SimplyCoreAudio()
+    private let simplyCA: SimplyCoreAudio
     private var deviceListChangedObserver : NSObjectProtocol? = nil
     
     private var micConfigDict = [AudioDevice: MicConfig]()
     private var isMuted = false
     
     
-    init (){
+    init (simplyCA : SimplyCoreAudio){
+        self.simplyCA = simplyCA
+        
         deviceListChangedObserver = NotificationCenter.default.addObserver(forName: .deviceListChanged,
                                                                            object: nil,
                                                                            queue: .main) { (notification) in

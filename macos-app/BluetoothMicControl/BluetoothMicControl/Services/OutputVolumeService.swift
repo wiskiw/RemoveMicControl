@@ -6,105 +6,105 @@
 //
 
 import Foundation
-import AudioToolbox
+import SimplyCoreAudio
 
 class OutputVolumeService {
-    
-    private lazy var deviceId : AudioDeviceID =  self.getDefaultOutputDeviceID()
-    private lazy var onVolumeChangedCallback : AudioObjectPropertyListenerBlock = { _, _ in self.handleVolumeChangedEvent()}
-    private lazy var volumePropertyAddress = getVolumePropertyAddress()
-    private lazy var lastVolume : Float = self.getVolume(defaultOutputDeviceID: self.deviceId)
 
-    var onVolumeChangedListener: ((Float, Float)->())! = nil
+    private let simplyCA: SimplyCoreAudio!
+    private let throttleQueue = OperationQueue()
     
-    init() {
-        print("VolumeWatcherService init")
-        print("Init volume \(self.lastVolume)")
+    private lazy var lastVolume : Float32 = self.getVolume()
+    private var volumeChangedObserver : NSObjectProtocol? = nil
+    private var ignoreNext : Bool = false
+    
+    var onVolumeChangedListener: ((Float32, Float32)->(Bool))? = nil
+    
+    init (simplyCA : SimplyCoreAudio){
+        self.simplyCA = simplyCA
         
-        AudioObjectAddPropertyListenerBlock(
-            self.deviceId,
-            &self.volumePropertyAddress,
-            DispatchQueue.main,
-            self.onVolumeChangedCallback
-        )
-    }
-    
-    private func getVolumePropertyAddress() -> AudioObjectPropertyAddress {
-        return AudioObjectPropertyAddress(
-            mSelector: kAudioHardwareServiceDeviceProperty_VirtualMainVolume,
-            mScope: kAudioDevicePropertyScopeOutput,
-            mElement: kAudioObjectPropertyElementMain)
-    }
-    
-    private func getDefaultOutputDeviceID() -> AudioDeviceID {
-        var defaultOutputDeviceID = AudioDeviceID(0)
-        var defaultOutputDeviceIDSize = UInt32(MemoryLayout.size(ofValue: defaultOutputDeviceID))
-
-        var getDefaultOutputDevicePropertyAddress = AudioObjectPropertyAddress(
-            mSelector: kAudioHardwarePropertyDefaultOutputDevice,
-            mScope: kAudioObjectPropertyScopeGlobal,
-            mElement: AudioObjectPropertyElement(kAudioObjectPropertyElementMain))
-
-        AudioObjectGetPropertyData(
-            AudioObjectID(kAudioObjectSystemObject),
-            &getDefaultOutputDevicePropertyAddress,
-            0,
-            nil,
-            &defaultOutputDeviceIDSize,
-            &defaultOutputDeviceID)
+        NSLog("OutputVolumeService init")
+        NSLog("Init volume \(self.lastVolume)")
         
-        return defaultOutputDeviceID
+        self.volumeChangedObserver = NotificationCenter.default.addObserver(forName: .deviceVolumeDidChange,
+                                                                            object: nil,
+                                                                            queue: .main) { (notification) in
+            self.handleVolumeChangedEvent()
+        }
     }
     
     private func handleVolumeChangedEvent() {
-        let newVolume = self.getVolume(defaultOutputDeviceID: deviceId)
-        
-        if (self.lastVolume != newVolume){
-            let old = lastVolume
-            self.lastVolume = newVolume
-            
-            if self.onVolumeChangedListener != nil {
-                self.onVolumeChangedListener(old, newVolume)
+        let throttleOperation = ThrottleOperation() {
+            if (self.ignoreNext){
+                self.ignoreNext = false
+                return
             }
-          
+            
+            let old = self.lastVolume
+            let new = self.getVolume()
+            
+            let isRollbackRequired = self.onVolumeChangedListener?(old, new) ?? false
+            
+            if (isRollbackRequired) {
+                self.ignoreNext = true
+                self.setVolume(volume: old)
+            } else {
+                self.lastVolume = new
+            }
         }
-
-    }
-
-    func getVolume(defaultOutputDeviceID : AudioDeviceID) -> Float{
-        var volume = Float32(0.0)
-        var volumeSize = UInt32(MemoryLayout.size(ofValue: volume))
         
-        AudioObjectGetPropertyData(
-            self.deviceId,
-            &self.volumePropertyAddress,
-            0,
-            nil,
-            &volumeSize,
-            &volume)
-
-        return volume
+        self.throttleQueue.cancelAllOperations()
+        self.throttleQueue.addOperation(throttleOperation)
     }
     
-    func setVolume(volume : Float) {
-        var volume32 = Float32(volume) // 0.0 ... 1.0
-        let volumeSize = UInt32(MemoryLayout.size(ofValue: volume32))
-
-        AudioObjectSetPropertyData(
-            self.deviceId,
-            &self.volumePropertyAddress,
-            0,
-            nil,
-            volumeSize,
-            &volume32)
+    func getVolume() -> Float32{
+        guard let device = self.simplyCA.defaultOutputDevice else { return 0.0 }
+        
+        if let stereoPair = device.preferredChannelsForStereo(scope: .output) {
+            let leftVolume = device.volume(channel: stereoPair.left, scope: .output) ?? 0.0
+            let rightVolume = device.volume(channel: stereoPair.right, scope: .output) ?? 0.0
+            
+            return (leftVolume + rightVolume) / 2.0
+        }
+        return 0.0
+    }
+    
+    func setVolume(volume : Float32) {
+        guard let device = self.simplyCA.defaultOutputDevice else { return }
+        
+        if let stereoPair = device.preferredChannelsForStereo(scope: .output) {
+            device.setVolume(volume, channel: stereoPair.left, scope: .output)
+            device.setVolume(volume, channel: stereoPair.right, scope: .output)
+        }
     }
     
     deinit {
-        AudioObjectRemovePropertyListenerBlock(
-            self.deviceId,
-            &self.volumePropertyAddress,
-            DispatchQueue.main,
-            self.onVolumeChangedCallback
-        )
+        if let observer = volumeChangedObserver {
+            NotificationCenter.default.removeObserver(observer)
+        }
+    }
+    
+    
+    class ThrottleOperation: Operation {
+        
+        private let THROTTLE_DELAY_MS = 96
+        private let onComplete : (() -> Void)!
+        
+        init(onComplete : @escaping () -> Void) {
+            self.onComplete = onComplete
+        }
+        
+        override func main() {
+            //            NSLog("Trottling...")
+            sleepMs(durationMs: self.THROTTLE_DELAY_MS)
+            
+            if (isCancelled){
+                return
+            } else {
+                DispatchQueue.main.async(){
+                    //                    NSLog("Notifing...")
+                    self.onComplete()
+                }
+            }
+        }
     }
 }
