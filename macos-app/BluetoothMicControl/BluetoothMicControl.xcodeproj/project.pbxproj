@@ -8,11 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		0ED8478A1AB89E2D00710ABA /* BluetoothMicControlApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED847891AB89E2D00710ABA /* BluetoothMicControlApp.swift */; };
-		BA7BED1B1DF5EE9E004DA990 /* MicrophoneService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7BED1A1DF5EE9E004DA990 /* MicrophoneService.swift */; };
+		BA7BED1B1DF5EE9E004DA990 /* InputDeviceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7BED1A1DF5EE9E004DA990 /* InputDeviceService.swift */; };
 		F6252475293AB1D7004087D5 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6252474293AB1D7004087D5 /* Utils.swift */; };
+		F6252477293AE460004087D5 /* InputDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6252476293AE460004087D5 /* InputDevice.swift */; };
+		F6252479293B5BD1004087D5 /* OutputDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6252478293B5BD1004087D5 /* OutputDevice.swift */; };
 		F63175CB293A6EA600556B17 /* SimplyCoreAudio in Frameworks */ = {isa = PBXBuildFile; productRef = F63175CA293A6EA600556B17 /* SimplyCoreAudio */; };
 		F63B5F6A293A5CCC007AF54A /* MicControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63B5F66293A5CCC007AF54A /* MicControlView.swift */; };
-		F63B5F6B293A5CCC007AF54A /* OutputVolumeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63B5F67293A5CCC007AF54A /* OutputVolumeService.swift */; };
+		F63B5F6B293A5CCC007AF54A /* OutputDeviceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63B5F67293A5CCC007AF54A /* OutputDeviceService.swift */; };
 		F63B5F6C293A5CCC007AF54A /* MicControlViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63B5F68293A5CCC007AF54A /* MicControlViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -21,10 +23,12 @@
 		0ED847881AB89E2D00710ABA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0ED847891AB89E2D00710ABA /* BluetoothMicControlApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothMicControlApp.swift; sourceTree = "<group>"; };
 		0ED847941AB89E2E00710ABA /* .xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = .xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		BA7BED1A1DF5EE9E004DA990 /* MicrophoneService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MicrophoneService.swift; sourceTree = "<group>"; };
+		BA7BED1A1DF5EE9E004DA990 /* InputDeviceService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputDeviceService.swift; sourceTree = "<group>"; };
 		F6252474293AB1D7004087D5 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		F6252476293AE460004087D5 /* InputDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputDevice.swift; sourceTree = "<group>"; };
+		F6252478293B5BD1004087D5 /* OutputDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutputDevice.swift; sourceTree = "<group>"; };
 		F63B5F66293A5CCC007AF54A /* MicControlView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MicControlView.swift; sourceTree = "<group>"; };
-		F63B5F67293A5CCC007AF54A /* OutputVolumeService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutputVolumeService.swift; sourceTree = "<group>"; };
+		F63B5F67293A5CCC007AF54A /* OutputDeviceService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutputDeviceService.swift; sourceTree = "<group>"; };
 		F63B5F68293A5CCC007AF54A /* MicControlViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MicControlViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -60,6 +64,7 @@
 		0ED847861AB89E2D00710ABA /* BluetoothMicControl */ = {
 			isa = PBXGroup;
 			children = (
+				F625247A293B7BFD004087D5 /* Models */,
 				F654E3BB293A5FFD008318FA /* Presentation */,
 				F63B5F6E293A5CDB007AF54A /* Services */,
 				0ED847881AB89E2D00710ABA /* Info.plist */,
@@ -69,11 +74,20 @@
 			path = BluetoothMicControl;
 			sourceTree = "<group>";
 		};
+		F625247A293B7BFD004087D5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F6252478293B5BD1004087D5 /* OutputDevice.swift */,
+				F6252476293AE460004087D5 /* InputDevice.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		F63B5F6E293A5CDB007AF54A /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				BA7BED1A1DF5EE9E004DA990 /* MicrophoneService.swift */,
-				F63B5F67293A5CCC007AF54A /* OutputVolumeService.swift */,
+				BA7BED1A1DF5EE9E004DA990 /* InputDeviceService.swift */,
+				F63B5F67293A5CCC007AF54A /* OutputDeviceService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -159,10 +173,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				0ED8478A1AB89E2D00710ABA /* BluetoothMicControlApp.swift in Sources */,
-				BA7BED1B1DF5EE9E004DA990 /* MicrophoneService.swift in Sources */,
+				BA7BED1B1DF5EE9E004DA990 /* InputDeviceService.swift in Sources */,
 				F63B5F6A293A5CCC007AF54A /* MicControlView.swift in Sources */,
-				F63B5F6B293A5CCC007AF54A /* OutputVolumeService.swift in Sources */,
+				F63B5F6B293A5CCC007AF54A /* OutputDeviceService.swift in Sources */,
 				F63B5F6C293A5CCC007AF54A /* MicControlViewModel.swift in Sources */,
+				F6252477293AE460004087D5 /* InputDevice.swift in Sources */,
+				F6252479293B5BD1004087D5 /* OutputDevice.swift in Sources */,
 				F6252475293AB1D7004087D5 /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

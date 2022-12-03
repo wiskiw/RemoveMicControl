@@ -19,23 +19,23 @@ struct BluetoothMicControlApp: App {
         }
 
     init() {
-        switch AVCaptureDevice.authorizationStatus(for: .audio) {
-            case .notDetermined:
-                AVCaptureDevice.requestAccess(for: .audio) { granted in
-                    if !granted {
-                        NSLog("Can't get access to the mic.")
-                        exit(1)
-                    }
-                }
-            
-            case .denied:
-                fallthrough
-            case .restricted:
-                NSLog("Can't get access to the mic.")
-                exit(1)
-            default:
-                print("Already has permission");
-        }
+//        switch AVCaptureDevice.authorizationStatus(for: .audio) {
+//            case .notDetermined:
+//                AVCaptureDevice.requestAccess(for: .audio) { granted in
+//                    if !granted {
+//                        NSLog("Can't get access to the mic.")
+//                        exit(1)
+//                    }
+//                }
+//
+//            case .denied:
+//                fallthrough
+//            case .restricted:
+//                NSLog("Can't get access to the mic.")
+//                exit(1)
+//            default:
+//                print("Already has permission");
+//        }
     }
     
 }

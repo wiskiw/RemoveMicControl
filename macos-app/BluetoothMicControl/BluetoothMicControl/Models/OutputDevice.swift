@@ -1,29 +1,29 @@
 //
-//  OutputVolumeService.swift
+//  OutputDevice.swift
 //  BluetoothMicControl
 //
-//  Created by Andrei Yablonski on 30.11.22.
+//  Created by Andrei Yablonski on 3.12.22.
 //
 
 import Foundation
 import SimplyCoreAudio
 
-class OutputVolumeService {
-
-    private let simplyCA: SimplyCoreAudio!
-    private let throttleQueue = OperationQueue()
+class OutputDevice : Equatable {
     
-    private lazy var lastVolume : Float32 = self.getVolume()
+    private let throttleQueue = OperationQueue()
+    let audioDevice: AudioDevice
+    
+    private var lastVolume : Float32 = 0.0
     private var volumeChangedObserver : NSObjectProtocol? = nil
     private var ignoreNext : Bool = false
     
-    var onVolumeChangedListener: ((Float32, Float32)->(Bool))? = nil
+    var volumeChangedListener: ((Float32, Float32)->(Bool))? = nil
     
-    init (simplyCA : SimplyCoreAudio){
-        self.simplyCA = simplyCA
-        
-        NSLog("OutputVolumeService init")
-        NSLog("Init volume \(self.lastVolume)")
+    init (audioDevice: AudioDevice){
+        self.audioDevice = audioDevice
+        self.lastVolume = self.getVolume()
+
+        //        NSLog("Init OutputDevice '\(audioDevice.name)', volume:\(self.lastVolume)")
         
         self.volumeChangedObserver = NotificationCenter.default.addObserver(forName: .deviceVolumeDidChange,
                                                                             object: nil,
@@ -33,7 +33,9 @@ class OutputVolumeService {
     }
     
     private func handleVolumeChangedEvent() {
-        let throttleOperation = ThrottleOperation() {
+        guard volumeChangedListener != nil else {return}
+        
+        let throttleOperation = VolumeChangedThrottleOperation() {
             if (self.ignoreNext){
                 self.ignoreNext = false
                 return
@@ -42,7 +44,7 @@ class OutputVolumeService {
             let old = self.lastVolume
             let new = self.getVolume()
             
-            let isRollbackRequired = self.onVolumeChangedListener?(old, new) ?? false
+            let isRollbackRequired = self.volumeChangedListener?(old, new) ?? false
             
             if (isRollbackRequired) {
                 self.ignoreNext = true
@@ -56,25 +58,12 @@ class OutputVolumeService {
         self.throttleQueue.addOperation(throttleOperation)
     }
     
-    func getVolume() -> Float32{
-        guard let device = self.simplyCA.defaultOutputDevice else { return 0.0 }
-        
-        if let stereoPair = device.preferredChannelsForStereo(scope: .output) {
-            let leftVolume = device.volume(channel: stereoPair.left, scope: .output) ?? 0.0
-            let rightVolume = device.volume(channel: stereoPair.right, scope: .output) ?? 0.0
-            
-            return (leftVolume + rightVolume) / 2.0
-        }
-        return 0.0
+    func getVolume() -> Float32 {
+        return self.audioDevice.virtualMainVolume(scope: .output) ?? 0.0
     }
     
     func setVolume(volume : Float32) {
-        guard let device = self.simplyCA.defaultOutputDevice else { return }
-        
-        if let stereoPair = device.preferredChannelsForStereo(scope: .output) {
-            device.setVolume(volume, channel: stereoPair.left, scope: .output)
-            device.setVolume(volume, channel: stereoPair.right, scope: .output)
-        }
+        self.audioDevice.setVirtualMainVolume(volume, scope: .output)
     }
     
     deinit {
@@ -83,8 +72,12 @@ class OutputVolumeService {
         }
     }
     
+    static func == (lhs: OutputDevice, rhs: OutputDevice) -> Bool {
+        return lhs.audioDevice.id == rhs.audioDevice.id
+    }
     
-    class ThrottleOperation: Operation {
+    
+    class VolumeChangedThrottleOperation: Operation {
         
         private let THROTTLE_DELAY_MS = 96
         private let onComplete : (() -> Void)!
