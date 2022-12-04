@@ -16,7 +16,7 @@ class MicControlViewModel : ObservableObject {
     private var lastChangeVolumeDirection: ChangeVolumeDirection? = nil
     
     @Published var micState : MicState = .activated
-    
+
     init(inputDeviceService : InputDeviceService, outputDeviceService : OutputDeviceService) {
         self.inputDeviceService = inputDeviceService
         self.outputDeviceService = outputDeviceService
@@ -27,13 +27,12 @@ class MicControlViewModel : ObservableObject {
             return self.onVolumeChanged(outputDevice: activeDevice, old: old, new: new)
         }
         
-        self.publishMuteState()
+        self.micState = getMicState()
     }
     
     private func onVolumeChanged(outputDevice: OutputDevice, old:Float32, new:Float32) -> Bool{
         NSLog("Master output device volume changed '\(outputDevice.audioDevice.name)': \(old) -> \(new)")
-        
-        
+
         if let direction = getChangeVolumeDirection(old: old, new: new) {
             if (self.lastChangeVolumeDirection == nil || self.lastChangeVolumeDirection != direction){
                 self.lastChangeVolumeDirection = direction
@@ -57,19 +56,34 @@ class MicControlViewModel : ObservableObject {
     }
     
     private func onNewVolumeDirection(direction : ChangeVolumeDirection){
-        self.setMute(mute: direction == .down)
-    }
-    
-    func setMute(mute : Bool){
-        if (mute) {
-            self.inputDeviceService.mute()
-        } else {
+        switch direction {
+        case .up:
             self.inputDeviceService.activate()
+            break;
+        case .down:
+            self.inputDeviceService.mute()
+            break;
         }
-        self.publishMuteState()
+        
+        self.micState = getMicState()
+    }
+
+    
+    private func getMicState() -> MicState {
+        let isMuted = self.inputDeviceService.isMuted()
+        return MicState.create(isMuted: isMuted)
     }
     
-    private func publishMuteState() {
-        self.micState = MicState.create(isMuted: self.inputDeviceService.isMuted())
-    }    
+    func toggleMicState(){
+        self.micState = self.micState.toggle()
+        
+        switch self.micState {
+        case .activated:
+            self.inputDeviceService.activate()
+            break;
+        case .muted:
+            self.inputDeviceService.mute()
+            break;
+        }
+    }
 }

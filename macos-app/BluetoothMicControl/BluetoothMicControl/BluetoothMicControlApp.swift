@@ -83,7 +83,7 @@ class AppDelegate : NSObject, NSApplicationDelegate, ObservableObject {
     private func setupStatusBar() {
         // Set the SwiftUI's ContentView to the Popover's ContentViewController
         popover = NSPopover()
-        popover.contentSize = NSSize(width: 300, height: 220)
+        popover.contentSize = NSSize(width: 244, height: 162)
         popover.behavior = .transient
         popover.animates = false
         

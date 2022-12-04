@@ -30,7 +30,7 @@ class StatusBarController {
         
         
         self.hidePopoverEventMonitor = EventMonitor(
-            mask: [.leftMouseDown, .rightMouseDown, .systemDefined],
+            mask: [.leftMouseDown, .rightMouseDown],
             handler: { event in
                 self.hidePopover()
             }
