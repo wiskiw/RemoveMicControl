@@ -19,15 +19,14 @@ struct MicControlView: View {
     
     var body: some View {
         VStack(alignment: .center) {
-            Text(vm.isMicsMuted ? "Mic is MUTED" : "Mic is ACTIVE")
+            Text(vm.micState == .muted ? "Mic is MUTED" : "Mic is ACTIVE")
                 .padding()
-            Spacer()
-            Text(vm.debugMessage)
-                .padding()
-                .task {
-                    vm.populateUi()
-                }
-        }.frame(width: 300, height: 300)
+                      
+            // To close any other statusbar windows if this app was opened
+            // idk why it's works :/
+            let emptyList : [Int] = []
+            List(emptyList, id: \.self) { _ in}.fixedSize()
+        }
     }
     
 }

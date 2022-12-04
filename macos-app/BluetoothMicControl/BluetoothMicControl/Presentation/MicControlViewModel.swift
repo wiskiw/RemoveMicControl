@@ -9,15 +9,13 @@ import Foundation
 import SimplyCoreAudio
 
 class MicControlViewModel : ObservableObject {
-    
 
     private let inputDeviceService : InputDeviceService
     private let outputDeviceService : OutputDeviceService
     
     private var lastChangeVolumeDirection: ChangeVolumeDirection? = nil
     
-    @Published var isMicsMuted : Bool = false
-    @Published var debugMessage : String = "nothing"
+    @Published var micState : MicState = .activated
     
     init(inputDeviceService : InputDeviceService, outputDeviceService : OutputDeviceService) {
         self.inputDeviceService = inputDeviceService
@@ -28,6 +26,8 @@ class MicControlViewModel : ObservableObject {
             let activeDevice = self.outputDeviceService.getMasterDevice()
             return self.onVolumeChanged(outputDevice: activeDevice, old: old, new: new)
         }
+        
+        self.publishMuteState()
     }
     
     private func onVolumeChanged(outputDevice: OutputDevice, old:Float32, new:Float32) -> Bool{
@@ -57,26 +57,19 @@ class MicControlViewModel : ObservableObject {
     }
     
     private func onNewVolumeDirection(direction : ChangeVolumeDirection){
-        if (direction == .down){
+        self.setMute(mute: direction == .down)
+    }
+    
+    func setMute(mute : Bool){
+        if (mute) {
             self.inputDeviceService.mute()
         } else {
             self.inputDeviceService.activate()
         }
-        
-        self.publishMicMuteState()
+        self.publishMuteState()
     }
     
-    private func publishMicMuteState() {
-        self.isMicsMuted = self.inputDeviceService.isMuted()
-    }
-    
-    func populateUi(){
-        self.debugMessage = "Hello there!"
-    }
-    
-    
-    enum ChangeVolumeDirection {
-        case up, down
-    }
-    
+    private func publishMuteState() {
+        self.micState = MicState.create(isMuted: self.inputDeviceService.isMuted())
+    }    
 }

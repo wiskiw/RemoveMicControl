@@ -9,6 +9,7 @@ import SwiftUI
 import AudioToolbox
 import AVKit
 import SimplyCoreAudio
+import Combine
 
 @main
 struct BluetoothMicControlApp: App {
@@ -43,83 +44,61 @@ struct BluetoothMicControlApp: App {
 }
 
 
-class AppDelegate : NSObject, NSApplicationDelegate {
+class AppDelegate : NSObject, NSApplicationDelegate, ObservableObject {
 
-    private let inputDeviceService : InputDeviceService
-    private let outputDeviceService : OutputDeviceService
     let micControlViewModel : MicControlViewModel
     
-    private var statusBarItem: NSStatusItem!
-    private var popover : NSPopover!
+    private var popover: NSPopover!
+    private var statusBarController: StatusBarController!
+
+    private var cancellables = Set<AnyCancellable>()
     
     override init() {
         let simplyCA = SimplyCoreAudio()
-        self.inputDeviceService = InputDeviceService(simplyCA: simplyCA)
-        self.outputDeviceService = try! OutputDeviceService(simplyCA: simplyCA)
+
+        let inputDeviceService = InputDeviceService(simplyCA: simplyCA)
+        let outputDeviceService = try! OutputDeviceService(simplyCA: simplyCA)
         
         self.micControlViewModel = MicControlViewModel(
-            inputDeviceService: self.inputDeviceService,
-            outputDeviceService: self.outputDeviceService
+            inputDeviceService: inputDeviceService,
+            outputDeviceService: outputDeviceService
         )
     }
     
     func applicationDidFinishLaunching(_ notification: Notification) {
         // Close main app window
-        if let window = NSApplication.shared.windows.first {
-            window.close()
-        }
+//        if let window = NSApplication.shared.windows.first {
+//            window.close()
+//        }
         
-        // Create the status item in the Menu bar
-        statusBarItem = NSStatusBar.system.statusItem(withLength: CGFloat(NSStatusItem.variableLength))
-      
-        // Status bar button
-        if let iconButton = statusBarItem.button {
-            iconButton.title = "BluetoothMicControl"
-            iconButton.action = #selector(togglePopover)
-            iconButton.image = getMicIcon(isMuted: self.inputDeviceService.isMuted())
-        }
+        setupStatusBar()
 
-        self.popover = NSPopover()
-        self.popover.contentSize = NSSize(width: 300, height: 300)
-        self.popover.behavior = .transient
-        self.popover.animates = true
+        self.micControlViewModel.$micState
+            .sink { micState in
+                self.statusBarController?.setIcon(icon: micState.getMicStatusBarIcon())
+            }
+            .store(in: &cancellables)
+    }
+    
+    private func setupStatusBar() {
+        // Set the SwiftUI's ContentView to the Popover's ContentViewController
+        popover = NSPopover()
+        popover.contentSize = NSSize(width: 300, height: 220)
+        popover.behavior = .transient
+        popover.animates = false
         
         let popoverView = MicControlView(vm: self.micControlViewModel)
-        self.popover.contentViewController = NSHostingController(
-            rootView: popoverView.frame(maxWidth: .infinity, maxHeight: .infinity).padding()
+        let hostingController = NSHostingController(rootView: popoverView.frame(maxWidth: .infinity, maxHeight: .infinity))
+        popover.contentViewController = hostingController
+        
+        // Create the Status Bar Item with the above Popover
+        statusBarController = StatusBarController(
+            popover : popover,
+            icon: self.micControlViewModel.micState.getMicStatusBarIcon()
         )
-
-        inputDeviceService.muteListener = { isMuted in
-            self.statusBarItem.button?.image = self.getMicIcon(isMuted: isMuted)
-        }
     }
     
-    @objc func togglePopover() {
-        if (popover.isShown){
-            self.popover.performClose(nil)
-        } else {
-            if let iconButton = statusBarItem.button {
-                self.popover.show(relativeTo: iconButton.bounds, of: iconButton, preferredEdge: NSRectEdge.maxY)
-                
-                // https://stackoverflow.com/a/54483792
-                NSApp.activate(ignoringOtherApps: true)
-            }
-        }
-    }
-    
-    private func getMicIcon(isMuted : Bool) -> NSImage{
-        if (isMuted){
-            return NSImage(named: "ic_mic_off")!
-        } else {
-            return NSImage(named: "ic_mic_on")!
-        }
-    }
-    
-    private func getMicMutedText(isMuted : Bool) -> String{
-        if (isMuted){
-            return "MUTED"
-        } else {
-            return "ACTIVATED"
-        }
+    func applicationWillTerminate(_ notification: Notification) {
+        cancellables.removeAll()
     }
 }
