@@ -10,7 +10,7 @@ import SimplyCoreAudio
 
 class MicControlViewModel : ObservableObject {
     
-    private let simplyCA = SimplyCoreAudio()
+
     private let inputDeviceService : InputDeviceService
     private let outputDeviceService : OutputDeviceService
     
@@ -19,10 +19,11 @@ class MicControlViewModel : ObservableObject {
     @Published var isMicsMuted : Bool = false
     @Published var debugMessage : String = "nothing"
     
-    init() {
-        self.inputDeviceService = InputDeviceService(simplyCA: self.simplyCA)
+    init(inputDeviceService : InputDeviceService, outputDeviceService : OutputDeviceService) {
+        self.inputDeviceService = inputDeviceService
+        self.outputDeviceService = outputDeviceService
         
-        self.outputDeviceService = try! OutputDeviceService(simplyCA: simplyCA)
+        
         self.outputDeviceService.setActiveDeviceVolumeChangedListener { old, new in
             let activeDevice = self.outputDeviceService.getMasterDevice()
             return self.onVolumeChanged(outputDevice: activeDevice, old: old, new: new)
