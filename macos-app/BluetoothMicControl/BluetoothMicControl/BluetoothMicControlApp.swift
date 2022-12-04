@@ -14,6 +14,9 @@ import Combine
 @main
 struct BluetoothMicControlApp: App {
     
+    static let popoverWidth = 320
+    static let popoverHeigth = 320
+    
     @NSApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
     
     var body: some Scene {
@@ -47,6 +50,7 @@ struct BluetoothMicControlApp: App {
 class AppDelegate : NSObject, NSApplicationDelegate, ObservableObject {
 
     let micControlViewModel : MicControlViewModel
+    let masterDeviceViewModel : MasterDeviceViewModel
     
     private var popover: NSPopover!
     private var statusBarController: StatusBarController!
@@ -59,10 +63,8 @@ class AppDelegate : NSObject, NSApplicationDelegate, ObservableObject {
         let inputDeviceService = InputDeviceService(simplyCA: simplyCA)
         let outputDeviceService = try! OutputDeviceService(simplyCA: simplyCA)
         
-        self.micControlViewModel = MicControlViewModel(
-            inputDeviceService: inputDeviceService,
-            outputDeviceService: outputDeviceService
-        )
+        self.micControlViewModel = MicControlViewModel(inputDeviceService: inputDeviceService, outputDeviceService: outputDeviceService)
+        self.masterDeviceViewModel = MasterDeviceViewModel(outputDeviceService: outputDeviceService)
     }
     
     func applicationDidFinishLaunching(_ notification: Notification) {
@@ -83,11 +85,11 @@ class AppDelegate : NSObject, NSApplicationDelegate, ObservableObject {
     private func setupStatusBar() {
         // Set the SwiftUI's ContentView to the Popover's ContentViewController
         popover = NSPopover()
-        popover.contentSize = NSSize(width: 244, height: 162)
+        popover.contentSize = NSSize(width: BluetoothMicControlApp.popoverWidth, height: BluetoothMicControlApp.popoverHeigth)
         popover.behavior = .transient
         popover.animates = false
         
-        let popoverView = MicControlView(vm: self.micControlViewModel)
+        let popoverView = MicControlView(micControlViewModel: self.micControlViewModel, masterDeviceViewModel: self.masterDeviceViewModel)
         let hostingController = NSHostingController(rootView: popoverView.frame(maxWidth: .infinity, maxHeight: .infinity))
         popover.contentViewController = hostingController
         

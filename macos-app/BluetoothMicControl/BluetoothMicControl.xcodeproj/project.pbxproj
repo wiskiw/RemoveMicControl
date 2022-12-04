@@ -11,6 +11,7 @@
 		F68AD988293CCD8200DAF174 /* StatusBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68AD987293CCD8200DAF174 /* StatusBarController.swift */; };
 		F68AD98B293CD48200DAF174 /* EventMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68AD98A293CD48200DAF174 /* EventMonitor.swift */; };
 		F68AD98D293D139000DAF174 /* SoundPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68AD98C293D139000DAF174 /* SoundPlayer.swift */; };
+		F68AD98F293D389900DAF174 /* MasterDeviceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68AD98E293D389900DAF174 /* MasterDeviceViewModel.swift */; };
 		F6AC8242293BFC20003C7C97 /* SimplyCoreAudio in Frameworks */ = {isa = PBXBuildFile; productRef = F6AC8241293BFC20003C7C97 /* SimplyCoreAudio */; };
 		F6AC8252293BFCF4003C7C97 /* InputDeviceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AC8250293BFCF4003C7C97 /* InputDeviceService.swift */; };
 		F6AC8253293BFCF4003C7C97 /* OutputDeviceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AC8251293BFCF4003C7C97 /* OutputDeviceService.swift */; };
@@ -32,6 +33,7 @@
 		F68AD987293CCD8200DAF174 /* StatusBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarController.swift; sourceTree = "<group>"; };
 		F68AD98A293CD48200DAF174 /* EventMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMonitor.swift; sourceTree = "<group>"; };
 		F68AD98C293D139000DAF174 /* SoundPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundPlayer.swift; sourceTree = "<group>"; };
+		F68AD98E293D389900DAF174 /* MasterDeviceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterDeviceViewModel.swift; sourceTree = "<group>"; };
 		F6AC8250293BFCF4003C7C97 /* InputDeviceService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputDeviceService.swift; sourceTree = "<group>"; };
 		F6AC8251293BFCF4003C7C97 /* OutputDeviceService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutputDeviceService.swift; sourceTree = "<group>"; };
 		F6AC8259293BFD3C003C7C97 /* OutputDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutputDevice.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				F6D6F8B2293BFB3E0044CC60 /* MicControlView.swift */,
+				F68AD98E293D389900DAF174 /* MasterDeviceViewModel.swift */,
 				F6D6F8B5293BFB680044CC60 /* MicControlViewModel.swift */,
 			);
 			path = Presentation;
@@ -217,6 +220,7 @@
 				F6AC825C293BFD3C003C7C97 /* InputDevice.swift in Sources */,
 				F6D6F8B3293BFB3E0044CC60 /* MicControlView.swift in Sources */,
 				F6AC8252293BFCF4003C7C97 /* InputDeviceService.swift in Sources */,
+				F68AD98F293D389900DAF174 /* MasterDeviceViewModel.swift in Sources */,
 				F6AC825E293BFD50003C7C97 /* Utils.swift in Sources */,
 				F6AC8253293BFCF4003C7C97 /* OutputDeviceService.swift in Sources */,
 				F68AD98D293D139000DAF174 /* SoundPlayer.swift in Sources */,

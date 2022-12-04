@@ -30,9 +30,9 @@ class MicControlViewModel : ObservableObject {
         self.micActivatedSoundPlayer = try! SoundPlayer(filename: "sound_mic_on")
         self.micMutedSoundPlayer = try! SoundPlayer(filename: "sound_mic_off")
         
-        self.outputDeviceService.setActiveDeviceVolumeChangedListener { old, new in
-            let activeDevice = self.outputDeviceService.getMasterDevice()
-            return self.onVolumeChanged(outputDevice: activeDevice, old: old, new: new)
+        self.outputDeviceService.setMasterDeviceVolumeChangedListener { old, new in
+            let masterDevice = self.outputDeviceService.getMasterDeviceDetails().device
+            return self.onVolumeChanged(outputDevice: masterDevice, old: old, new: new)
         }
         
         self.micState = getMicState()
