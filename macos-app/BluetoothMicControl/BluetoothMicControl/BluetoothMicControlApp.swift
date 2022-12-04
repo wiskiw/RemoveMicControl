@@ -67,9 +67,9 @@ class AppDelegate : NSObject, NSApplicationDelegate, ObservableObject {
     
     func applicationDidFinishLaunching(_ notification: Notification) {
         // Close main app window
-//        if let window = NSApplication.shared.windows.first {
-//            window.close()
-//        }
+        if let window = NSApplication.shared.windows.first {
+            window.close()
+        }
         
         setupStatusBar()
 

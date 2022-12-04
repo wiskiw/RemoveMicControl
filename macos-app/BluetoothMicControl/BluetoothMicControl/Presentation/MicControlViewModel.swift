@@ -7,11 +7,17 @@
 
 import Foundation
 import SimplyCoreAudio
+import AppKit
+import AudioToolbox
+import AVFoundation
 
 class MicControlViewModel : ObservableObject {
 
     private let inputDeviceService : InputDeviceService
     private let outputDeviceService : OutputDeviceService
+    
+    private let micActivatedSoundPlayer : SoundPlayer
+    private let micMutedSoundPlayer : SoundPlayer
     
     private var lastChangeVolumeDirection: ChangeVolumeDirection? = nil
     
@@ -20,7 +26,9 @@ class MicControlViewModel : ObservableObject {
     init(inputDeviceService : InputDeviceService, outputDeviceService : OutputDeviceService) {
         self.inputDeviceService = inputDeviceService
         self.outputDeviceService = outputDeviceService
-        
+      
+        self.micActivatedSoundPlayer = try! SoundPlayer(filename: "sound_mic_on")
+        self.micMutedSoundPlayer = try! SoundPlayer(filename: "sound_mic_off")
         
         self.outputDeviceService.setActiveDeviceVolumeChangedListener { old, new in
             let activeDevice = self.outputDeviceService.getMasterDevice()
@@ -59,9 +67,11 @@ class MicControlViewModel : ObservableObject {
         switch direction {
         case .up:
             self.inputDeviceService.activate()
+            self.micActivatedSoundPlayer.play()
             break;
         case .down:
             self.inputDeviceService.mute()
+            self.micMutedSoundPlayer.play()
             break;
         }
         
@@ -76,13 +86,16 @@ class MicControlViewModel : ObservableObject {
     
     func toggleMicState(){
         self.micState = self.micState.toggle()
-        
+    
         switch self.micState {
         case .activated:
             self.inputDeviceService.activate()
+            self.micActivatedSoundPlayer.play()
             break;
+
         case .muted:
             self.inputDeviceService.mute()
+            self.micMutedSoundPlayer.play()
             break;
         }
     }

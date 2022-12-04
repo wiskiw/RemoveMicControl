@@ -1,0 +1,12 @@
+{
+  "data" : [
+    {
+      "filename" : "sound_mic_off.wav",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
