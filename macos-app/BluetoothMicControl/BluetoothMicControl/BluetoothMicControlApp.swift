@@ -42,7 +42,7 @@ class AppDelegate : NSObject, NSApplicationDelegate, ObservableObject {
         let simplyCA = SimplyCoreAudio()
 
         self.inputDeviceService = InputDeviceService(simplyCA: simplyCA)
-        self.outputDeviceService = try! OutputDeviceService(simplyCA: simplyCA)
+        self.outputDeviceService = OutputDeviceService(simplyCA: simplyCA)
         
         self.micControlViewModel = MicControlViewModel(inputDeviceService: self.inputDeviceService, outputDeviceService: self.outputDeviceService)
     }

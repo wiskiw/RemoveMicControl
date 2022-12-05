@@ -38,6 +38,7 @@
 		F6AC825A293BFD3C003C7C97 /* InputDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputDevice.swift; sourceTree = "<group>"; };
 		F6AC825D293BFD50003C7C97 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utils.swift; path = BluetoothMicControl/Tools/Utils.swift; sourceTree = SOURCE_ROOT; };
 		F6AC825F293BFDD8003C7C97 /* BluetoothMicControlApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothMicControlApp.swift; sourceTree = "<group>"; };
+		F6AD1056293E4B16000C97BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		F6B403C0293CBA64005351E1 /* ChangeVolumeDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeVolumeDirection.swift; sourceTree = "<group>"; };
 		F6B403C2293CBB5E005351E1 /* MicState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicState.swift; sourceTree = "<group>"; };
 		F6B403C5293CBC7B005351E1 /* MicState+UiExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MicState+UiExtensions.swift"; sourceTree = "<group>"; };
@@ -76,6 +77,7 @@
 		F605F35A293BF982002820F4 /* BluetoothMicControl */ = {
 			isa = PBXGroup;
 			children = (
+				F6AD1056293E4B16000C97BE /* Info.plist */,
 				F6B403C4293CBC54005351E1 /* Extensions */,
 				F6D6F8B4293BFB590044CC60 /* Presentation */,
 				F6AC8258293BFD3C003C7C97 /* Models */,
@@ -355,6 +357,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = NO;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BluetoothMicControl/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -381,6 +384,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = NO;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BluetoothMicControl/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";

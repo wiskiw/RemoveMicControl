@@ -33,7 +33,7 @@ class OutputDeviceService {
     }
     
     
-    init(simplyCA: SimplyCoreAudio) throws {
+    init(simplyCA: SimplyCoreAudio) {
         self.outputDevices = OutputDeviceService.getOutputDevices(simplyCA: simplyCA)
         
         self.deviceListChangedObserver = NotificationCenter.default.addObserver(forName: .deviceListChanged,
