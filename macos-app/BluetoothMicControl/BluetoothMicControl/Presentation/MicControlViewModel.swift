@@ -94,11 +94,13 @@ class MicControlViewModel : ObservableObject {
     
         switch self.micState {
         case .activated:
+            self.lastChangeVolumeDirection = .up
             self.inputDeviceService.activate()
             self.micActivatedSoundPlayer.play()
             break;
 
         case .muted:
+            self.lastChangeVolumeDirection = .down
             self.inputDeviceService.mute()
             self.micMutedSoundPlayer.play()
             break;
