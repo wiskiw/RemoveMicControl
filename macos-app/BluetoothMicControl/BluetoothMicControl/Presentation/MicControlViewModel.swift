@@ -22,6 +22,7 @@ class MicControlViewModel : ObservableObject {
     private var lastChangeVolumeDirection: ChangeVolumeDirection? = nil
     
     @Published var micState : MicState = .activated
+    @Published var isVolumeControlEnable : Bool = true
 
     init(inputDeviceService : InputDeviceService, outputDeviceService : OutputDeviceService) {
         self.inputDeviceService = inputDeviceService
@@ -43,8 +44,13 @@ class MicControlViewModel : ObservableObject {
         if let direction = getChangeVolumeDirection(old: old, new: new) {
             if (self.lastChangeVolumeDirection == nil || self.lastChangeVolumeDirection != direction){
                 self.lastChangeVolumeDirection = direction
-                self.onNewVolumeDirection(direction: direction)
-                return true
+                
+                if (self.isVolumeControlEnable) {
+                    self.onNewVolumeDirection(direction: direction)
+                    return true
+                } else {
+                    return false
+                }
             }
             
         }

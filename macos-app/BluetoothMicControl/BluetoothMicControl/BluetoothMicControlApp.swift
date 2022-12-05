@@ -14,8 +14,8 @@ import Combine
 @main
 struct BluetoothMicControlApp: App {
     
-    static let popoverWidth = 320
-    static let popoverHeigth = 160
+    static let popoverWidth = 296
+    static let popoverHeigth = 230
     
     @NSApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
     
@@ -24,32 +24,14 @@ struct BluetoothMicControlApp: App {
             EmptyView().frame(width: 0, height: 0)
         }
     }
-    
-    init() {
-        //        switch AVCaptureDevice.authorizationStatus(for: .audio) {
-        //            case .notDetermined:
-        //                AVCaptureDevice.requestAccess(for: .audio) { granted in
-        //                    if !granted {
-        //                        NSLog("Can't get access to the mic.")
-        //                        exit(1)
-        //                    }
-        //                }
-        //
-        //            case .denied:
-        //                fallthrough
-        //            case .restricted:
-        //                NSLog("Can't get access to the mic.")
-        //                exit(1)
-        //            default:
-        //                print("Already has permission");
-        //        }
-    }
 }
 
 
 class AppDelegate : NSObject, NSApplicationDelegate, ObservableObject {
 
-    let micControlViewModel : MicControlViewModel
+    private let inputDeviceService: InputDeviceService
+    private let outputDeviceService: OutputDeviceService
+    private let micControlViewModel : MicControlViewModel
     
     private var popover: NSPopover!
     private var statusBarController: StatusBarController!
@@ -59,10 +41,10 @@ class AppDelegate : NSObject, NSApplicationDelegate, ObservableObject {
     override init() {
         let simplyCA = SimplyCoreAudio()
 
-        let inputDeviceService = InputDeviceService(simplyCA: simplyCA)
-        let outputDeviceService = try! OutputDeviceService(simplyCA: simplyCA)
+        self.inputDeviceService = InputDeviceService(simplyCA: simplyCA)
+        self.outputDeviceService = try! OutputDeviceService(simplyCA: simplyCA)
         
-        self.micControlViewModel = MicControlViewModel(inputDeviceService: inputDeviceService, outputDeviceService: outputDeviceService)
+        self.micControlViewModel = MicControlViewModel(inputDeviceService: self.inputDeviceService, outputDeviceService: self.outputDeviceService)
     }
     
     func applicationDidFinishLaunching(_ notification: Notification) {
@@ -99,6 +81,7 @@ class AppDelegate : NSObject, NSApplicationDelegate, ObservableObject {
     }
     
     func applicationWillTerminate(_ notification: Notification) {
+        inputDeviceService.activate()
         cancellables.removeAll()
     }
 }

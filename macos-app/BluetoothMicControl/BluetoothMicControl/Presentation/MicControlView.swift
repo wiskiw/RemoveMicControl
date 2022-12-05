@@ -26,6 +26,28 @@ struct MicControlView: View {
                     .frame(maxWidth: .infinity)
                     .environmentObject(micControlViewModel)
 
+                Spacer()
+                
+                if (!$micControlViewModel.isVolumeControlEnable.wrappedValue){
+                    Text("Toggle the switch to enable volume control")
+                        .font(.title2)
+                        .lineLimit(nil)
+                } else {
+                    let isMicActive = micControlViewModel.micState == .activated
+                    if (isMicActive){
+                        Text("Turn down the volume to mute the mic")
+                            .font(.title2)
+                            .lineLimit(nil)
+                    } else {
+                        Text("Turn up the volume to activate the mic")
+                            .font(.title2)
+                            .lineLimit(nil)
+                    }
+                }
+                
+                Toggle("Enable Volume Control", isOn: $micControlViewModel.isVolumeControlEnable)
+                    .toggleStyle(.switch)
+                    .tint(Color("clr_mic_active"))
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .padding(16)
@@ -67,10 +89,10 @@ struct MicToggleButtonView: View {
         .background(
             ZStack {
                 RoundedRectangle(cornerRadius: 10)
-                    .stroke(isMicActive ? Color("clr_mic_active_dark") : Color("clr_mic_muted_dark"), lineWidth: 4)
+                    .stroke(isMicActive ? Color("clr_mic_active_dark") : Color("clr_mic_muted_dark"), lineWidth: 8)
 
                 RoundedRectangle(cornerRadius: 10)
-                    .fill(isMicActive ? Color("clr_mic_active") : Color("clr_mic_muted_dark"))
+                    .fill(isMicActive ? Color("clr_mic_active") : Color("clr_mic_muted"))
             }
            
         )
