@@ -30,16 +30,15 @@ class MicControlViewModel : ObservableObject {
         self.micActivatedSoundPlayer = try! SoundPlayer(filename: "sound_mic_on")
         self.micMutedSoundPlayer = try! SoundPlayer(filename: "sound_mic_off")
         
-        self.outputDeviceService.setMasterDeviceVolumeChangedListener { old, new in
-            let masterDevice = self.outputDeviceService.getMasterDeviceDetails().device
-            return self.onVolumeChanged(outputDevice: masterDevice, old: old, new: new)
+        self.outputDeviceService.setVolumeChangedListener { device, old, new in
+            return self.onVolumeChanged(outputDevice: device, old: old, new: new)
         }
         
         self.micState = getMicState()
     }
     
     private func onVolumeChanged(outputDevice: OutputDevice, old:Float32, new:Float32) -> Bool{
-        NSLog("Master output device volume changed '\(outputDevice.audioDevice.name)': \(old) -> \(new)")
+        NSLog("Output volume changed '\(outputDevice.audioDevice.name)': \(old) -> \(new)")
 
         if let direction = getChangeVolumeDirection(old: old, new: new) {
             if (self.lastChangeVolumeDirection == nil || self.lastChangeVolumeDirection != direction){

@@ -21,6 +21,8 @@ class OutputDevice : Equatable {
     
     init (audioDevice: AudioDevice){
         self.audioDevice = audioDevice
+        self.throttleQueue.maxConcurrentOperationCount = 1
+        
         self.lastVolume = self.getVolume()
 
         //        NSLog("Init OutputDevice '\(audioDevice.name)', volume:\(self.lastVolume)")
@@ -32,9 +34,13 @@ class OutputDevice : Equatable {
         }
     }
     
+    deinit {
+        if let observer = volumeChangedObserver {
+            NotificationCenter.default.removeObserver(observer)
+        }
+    }
+    
     private func handleVolumeChangedEvent() {
-        guard volumeChangedListener != nil else {return}
-        
         let throttleOperation = VolumeChangedThrottleOperation() {
             if (self.ignoreNext){
                 self.ignoreNext = false
@@ -43,6 +49,10 @@ class OutputDevice : Equatable {
             
             let old = self.lastVolume
             let new = self.getVolume()
+            
+            if (old == new || self.volumeChangedListener == nil) {
+                return
+            }
             
             let isRollbackRequired = self.volumeChangedListener?(old, new) ?? false
             
@@ -66,12 +76,6 @@ class OutputDevice : Equatable {
         self.audioDevice.setVirtualMainVolume(volume, scope: .output)
     }
     
-    deinit {
-        if let observer = volumeChangedObserver {
-            NotificationCenter.default.removeObserver(observer)
-        }
-    }
-    
     static func == (lhs: OutputDevice, rhs: OutputDevice) -> Bool {
         return lhs.audioDevice.id == rhs.audioDevice.id
     }
@@ -79,7 +83,7 @@ class OutputDevice : Equatable {
     
     class VolumeChangedThrottleOperation: Operation {
         
-        private let THROTTLE_DELAY_MS = 96
+        private static let throttleDelayMs = 96
         private let onComplete : (() -> Void)!
         
         init(onComplete : @escaping () -> Void) {
@@ -87,14 +91,14 @@ class OutputDevice : Equatable {
         }
         
         override func main() {
-            //            NSLog("Trottling...")
-            sleepMs(durationMs: self.THROTTLE_DELAY_MS)
+//            NSLog("Trottling...")
+            sleepMs(durationMs: VolumeChangedThrottleOperation.throttleDelayMs)
             
             if (isCancelled){
                 return
             } else {
                 DispatchQueue.main.async(){
-                    //                    NSLog("Notifing...")
+//                    NSLog("Notifing...")
                     self.onComplete()
                 }
             }

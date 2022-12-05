@@ -12,46 +12,25 @@ import Combine
 struct MicControlView: View {
     
     @StateObject private var micControlViewModel : MicControlViewModel
-    @StateObject private var masterDeviceViewModel : MasterDeviceViewModel
     
-    init(micControlViewModel : MicControlViewModel, masterDeviceViewModel : MasterDeviceViewModel){
+    init(micControlViewModel : MicControlViewModel){
         self._micControlViewModel = StateObject(wrappedValue: micControlViewModel)
-        self._masterDeviceViewModel = StateObject(wrappedValue: masterDeviceViewModel)
     }
     
-    
-    // Define State properties to save the selected options,
-    // Define the menu options to choose from in the dropdown
-    @State var location = ["Los Angeles", "Queens", "Manhattan", "DC", "Miami", "Chicago", "Detroit"]
-    // Save the selected index, so we can use it later to show as a Text element the location chosen by the user
-    @State var locationIndex = 0
-    
+
     var body: some View {
-        
-        
         ZStack(alignment: .leading) {
             VStack(alignment: .leading, spacing: 8){
-                
-                Spacer()
 
                 MicToggleButtonView()
-                    .frame(idealWidth: .infinity, maxWidth: .infinity)
+                    .frame(maxWidth: .infinity)
                     .environmentObject(micControlViewModel)
-                
-                Spacer()
 
-                Picker(selection: $masterDeviceViewModel.selectedOption, label: Text("Control device:")) {
-    //                Text("No Option").tag(Optional<OutputDeviceOption>(nil))
-                    ForEach($masterDeviceViewModel.availableDeviceOptions, id: \.hashValue) { $option in
-                        let lable = option.isDefault ? "Default (\(option.name))" : option.name
-                        Text(lable).tag(option)
-                    }
-                }
-                .pickerStyle(.menu)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .padding(16)
             
+
             // To close any other statusbar windows if this app was opened
             // idk why it's works :/
             let emptyList : [Int] = []
@@ -108,12 +87,10 @@ struct ContentView_Previews: PreviewProvider {
     private static let outputDeviceService = try! OutputDeviceService(simplyCA: simplyCA)
     
     private static let micControlViewModel = MicControlViewModel(inputDeviceService: inputDeviceService, outputDeviceService: outputDeviceService)
-    private static let masterDeviceViewModel = MasterDeviceViewModel(outputDeviceService: outputDeviceService)
     
     static var previews: some View {
         MicControlView(
-            micControlViewModel: micControlViewModel,
-            masterDeviceViewModel: masterDeviceViewModel
+            micControlViewModel: micControlViewModel
         )
         .frame(
             width: CGFloat(BluetoothMicControlApp.popoverWidth),

@@ -15,7 +15,7 @@ import Combine
 struct BluetoothMicControlApp: App {
     
     static let popoverWidth = 320
-    static let popoverHeigth = 320
+    static let popoverHeigth = 160
     
     @NSApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
     
@@ -50,7 +50,6 @@ struct BluetoothMicControlApp: App {
 class AppDelegate : NSObject, NSApplicationDelegate, ObservableObject {
 
     let micControlViewModel : MicControlViewModel
-    let masterDeviceViewModel : MasterDeviceViewModel
     
     private var popover: NSPopover!
     private var statusBarController: StatusBarController!
@@ -64,7 +63,6 @@ class AppDelegate : NSObject, NSApplicationDelegate, ObservableObject {
         let outputDeviceService = try! OutputDeviceService(simplyCA: simplyCA)
         
         self.micControlViewModel = MicControlViewModel(inputDeviceService: inputDeviceService, outputDeviceService: outputDeviceService)
-        self.masterDeviceViewModel = MasterDeviceViewModel(outputDeviceService: outputDeviceService)
     }
     
     func applicationDidFinishLaunching(_ notification: Notification) {
@@ -89,7 +87,7 @@ class AppDelegate : NSObject, NSApplicationDelegate, ObservableObject {
         popover.behavior = .transient
         popover.animates = false
         
-        let popoverView = MicControlView(micControlViewModel: self.micControlViewModel, masterDeviceViewModel: self.masterDeviceViewModel)
+        let popoverView = MicControlView(micControlViewModel: self.micControlViewModel)
         let hostingController = NSHostingController(rootView: popoverView.frame(maxWidth: .infinity, maxHeight: .infinity))
         popover.contentViewController = hostingController
         

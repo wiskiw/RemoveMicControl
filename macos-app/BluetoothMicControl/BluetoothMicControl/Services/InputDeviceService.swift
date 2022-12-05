@@ -14,9 +14,6 @@ class InputDeviceService {
     
     private var inputDevices : [InputDevice]
     private var isAllMuted = false
-    
-    var muteListener : ((Bool) -> ())?
-    
 
     private static func getInputDevices(simplyCA : SimplyCoreAudio) -> [InputDevice]{
         return simplyCA.allInputDevices
@@ -49,7 +46,6 @@ class InputDeviceService {
             $0.mute()
         }
         self.isAllMuted = true
-        self.muteListener?(true)
     }
     
     func activate() {
@@ -57,7 +53,6 @@ class InputDeviceService {
             $0.activate()
         }
         self.isAllMuted = false
-        self.muteListener?(false)
     }
     
     func isMuted() -> Bool{
