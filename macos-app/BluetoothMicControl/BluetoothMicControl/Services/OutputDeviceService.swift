@@ -13,21 +13,23 @@ class OutputDeviceService {
     
     private let throttleQueue = OperationQueue()
     
-    private var outputDevices: [OutputDevice] = []
+    private var outputDevices: Set<OutputDevice> = []
     
     private var volumeChangedListener: ((OutputDevice, Float32, Float32)->(Bool))?
     private var deviceListChangedListener: (()->())?
     
     private var deviceListChangedObserver : NSObjectProtocol?
-    private var volumeChangedObserver : NSObjectProtocol? = nil
+    private var volumeChangedObserver : NSObjectProtocol?
     
-    private static func getOutputDevices(simplyCA : SimplyCoreAudio) -> [OutputDevice]{
-        return simplyCA.allOutputDevices
+    private static func getOutputDevices(simplyCA : SimplyCoreAudio) -> Set<OutputDevice>{
+        let deviceList = simplyCA.allOutputDevices
             .compactMap{$0} // filter not nil
             .map{ device in
                 NSLog("Found output device '\(device.name)'")
                 return OutputDevice(audioDevice: device)
             }
+        
+        return Set(deviceList)
     }
     
     
@@ -36,16 +38,17 @@ class OutputDeviceService {
         
         self.deviceListChangedObserver = NotificationCenter.default.addObserver(forName: .deviceListChanged,
                                                                                 object: nil,
-                                                                                queue: .main) {  [weak self] (notification) in
-            NSLog("Rescanning output devices...")
-            self?.outputDevices.forEach { device in
-                device.volumeChangedListener = nil
+                                                                                queue: .main) { [weak self] (notification) in
+            // deviceListChanged does not triggered if simpliCA.allDevices is not called inside observer :/
+            simplyCA.allDevices
+            
+            if let addedDevices = notification.userInfo?["addedDevices"] as? [AudioDevice] {
+                self?.onDevicesAdded(devices: addedDevices)
             }
-            self?.outputDevices.removeAll()
-            self?.outputDevices = OutputDeviceService.getOutputDevices(simplyCA: simplyCA)
-            self?.setVolumeChangedListenerToAllDevices()
 
-            self?.deviceListChangedListener?()
+            if let removedDevices = notification.userInfo?["removedDevices"] as? [AudioDevice] {
+                self?.onDevicesRemoved(devices: removedDevices)
+            }
         }
         
         self.volumeChangedObserver = NotificationCenter.default.addObserver(forName: .deviceVolumeDidChange,
@@ -62,6 +65,32 @@ class OutputDeviceService {
         if let observer = volumeChangedObserver {
             NotificationCenter.default.removeObserver(observer)
         }
+    }
+    
+    private func onDevicesAdded(devices : [AudioDevice]){
+        devices
+            .filter { $0.channels(scope: .output) > 0 }
+            .map { OutputDevice(audioDevice: $0) }
+            .filter { !self.outputDevices.contains($0) }
+            .forEach { device in
+                device.volumeChangedListener = { [weak self] old, new in
+                    self?.volumeChangedListener?(device, old, new) ?? false
+                }
+                self.outputDevices.insert(device)
+                
+                NSLog("Output device was attached: \(device.audioDevice.name)")
+            }
+    }
+    
+    private func onDevicesRemoved(devices : [AudioDevice]){
+        devices
+            .map { OutputDevice(audioDevice: $0) }
+            .forEach { device in
+                if let removedDevice = self.outputDevices.remove(device) {
+                    removedDevice.volumeChangedListener = nil
+                    NSLog("Output device was detached: \(device.audioDevice.name)")
+                }
+            }
     }
     
     func setVolumeChangedListener(listener: ((OutputDevice, Float32, Float32)->(Bool))?){

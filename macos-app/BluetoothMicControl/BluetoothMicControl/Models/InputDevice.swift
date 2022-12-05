@@ -8,11 +8,11 @@
 import Foundation
 import SimplyCoreAudio
 
-class InputDevice {
+class InputDevice : Hashable {
     
     private let CHANNEL : UInt32 = 0
     
-    private let audioDevice : AudioDevice
+    let audioDevice : AudioDevice
     private let originalVolume : Float32!
     
     init (audioDevice : AudioDevice) {
@@ -53,5 +53,13 @@ class InputDevice {
         
         // to move volume bar in System Preferences
         self.audioDevice.setVolume(0, channel: 0, scope: .input)
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(self.audioDevice.id)
+    }
+    
+    static func == (lhs: InputDevice, rhs: InputDevice) -> Bool {
+        return lhs.audioDevice.id == rhs.audioDevice.id
     }
 }

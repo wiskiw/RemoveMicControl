@@ -51,12 +51,6 @@ struct MicControlView: View {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .padding(16)
-            
-
-            // To close any other statusbar windows if this app was opened
-            // idk why it's works :/
-            let emptyList : [Int] = []
-            List(emptyList, id: \.self) { _ in}.fixedSize()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }

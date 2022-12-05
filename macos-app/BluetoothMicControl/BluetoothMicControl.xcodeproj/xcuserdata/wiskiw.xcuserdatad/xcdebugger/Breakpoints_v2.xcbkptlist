@@ -3,4 +3,118 @@
    uuid = "2E54BD42-28D6-4FD7-A2FC-5DC351358440"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "210491B5-DF55-4661-AC33-7070D6E7FBCE"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BluetoothMicControl/Services/InputDeviceService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
+            landmarkName = "onDevicesAdded(devices:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "210491B5-DF55-4661-AC33-7070D6E7FBCE - cc0e9f6f7735c5a6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BluetoothMicControl.InputDeviceService.onDevicesAdded(devices: Swift.Array&lt;SimplyCoreAudio.AudioDevice&gt;) -&gt; ()"
+                  moduleName = "BluetoothMicControl"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/wiskiw/Projects/BluetoothMicControl/macos-app/BluetoothMicControl/BluetoothMicControl/Services/InputDeviceService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "56"
+                  endingLineNumber = "56"
+                  offsetFromSymbolStart = "152">
+               </Location>
+               <Location
+                  uuid = "210491B5-DF55-4661-AC33-7070D6E7FBCE - a974f41075d412e3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (SimplyCoreAudio.AudioDevice) -&gt; BluetoothMicControl.InputDevice in BluetoothMicControl.InputDeviceService.onDevicesAdded(devices: Swift.Array&lt;SimplyCoreAudio.AudioDevice&gt;) -&gt; ()"
+                  moduleName = "BluetoothMicControl"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/wiskiw/Projects/BluetoothMicControl/macos-app/BluetoothMicControl/BluetoothMicControl/Services/InputDeviceService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "56"
+                  endingLineNumber = "56"
+                  offsetFromSymbolStart = "44">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3CF358D4-A181-4A81-AFA2-1F37923F7284"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BluetoothMicControl/Services/InputDeviceService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "init(simplyCA:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "3CF358D4-A181-4A81-AFA2-1F37923F7284 - d75e0c9acd33894b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Foundation.Notification) -&gt; () in BluetoothMicControl.InputDeviceService.init(simplyCA: SimplyCoreAudio.SimplyCoreAudio) -&gt; BluetoothMicControl.InputDeviceService"
+                  moduleName = "BluetoothMicControl"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/wiskiw/Projects/BluetoothMicControl/macos-app/BluetoothMicControl/BluetoothMicControl/Services/InputDeviceService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "37"
+                  endingLineNumber = "37"
+                  offsetFromSymbolStart = "408">
+               </Location>
+               <Location
+                  uuid = "3CF358D4-A181-4A81-AFA2-1F37923F7284 - d75e0c9acd33894b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Foundation.Notification) -&gt; () in BluetoothMicControl.InputDeviceService.init(simplyCA: SimplyCoreAudio.SimplyCoreAudio) -&gt; BluetoothMicControl.InputDeviceService"
+                  moduleName = "BluetoothMicControl"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/wiskiw/Projects/BluetoothMicControl/macos-app/BluetoothMicControl/BluetoothMicControl/Services/InputDeviceService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "37"
+                  endingLineNumber = "37"
+                  offsetFromSymbolStart = "912">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A45C122E-F3B5-42E6-B249-6027E376381D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BluetoothMicControl/Services/InputDeviceService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "init(simplyCA:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

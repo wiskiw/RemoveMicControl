@@ -8,7 +8,7 @@
 import Foundation
 import SimplyCoreAudio
 
-class OutputDevice : Equatable {
+class OutputDevice : Hashable {
     
     let audioDevice: AudioDevice
     
@@ -53,6 +53,10 @@ class OutputDevice : Equatable {
     
     func setVolume(volume : Float32) {
         self.audioDevice.setVirtualMainVolume(volume, scope: .output)
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(self.audioDevice.id)
     }
     
     static func == (lhs: OutputDevice, rhs: OutputDevice) -> Bool {
